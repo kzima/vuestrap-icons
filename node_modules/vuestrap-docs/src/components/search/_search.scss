@@ -1,0 +1,14 @@
+// variables
+$vuestrap-docs-search-bg: #f7f7f9;
+
+// namespaced component
+.vuestrap-docs-search {
+    .list-group-search {
+        background: $vuestrap-docs-search-bg;
+    }
+    .list-group-item.active {
+        color: $brand-success;
+        background-color: transparent;
+        border-color: $brand-success;
+    }
+}
