@@ -1,0 +1,159 @@
+// kzima/icons
+// variables
+$vuestrap-icons-size-sm: 1.2rem !default;
+$vuestrap-icons-size-md: 1.6rem !default;
+$vuestrap-icons-size-lg: 2.0rem !default;
+$vuestrap-icons-size-xl: 2.4rem !default;
+$vuestrap-icons-size-xxl: 2.8rem !default;
+$vuestrap-icons-fill-default: #818a91 !default;
+$vuestrap-icons-fill-dark: #000 !default;
+$vuestrap-icons-fill-light: #fff !default;
+$vuestrap-icons-fill-primary: $brand-primary !default;
+$vuestrap-icons-fill-info: $brand-info !default;
+$vuestrap-icons-fill-success: $brand-success !default;
+$vuestrap-icons-fill-warning: $brand-warning !default;
+$vuestrap-icons-fill-danger: $brand-danger !default;
+// mixins
+@mixin icon-variant ($mainColor, $secondaryColor) {
+    .icon {
+        fill: $mainColor;
+    }
+    &.icons-bg-fill {
+        .icon {
+            fill: $secondaryColor;
+        }
+        .icon-background {
+            fill: $mainColor;
+        }
+        .text {
+            color: $secondaryColor;
+        }
+    }
+    &.icons-bg-outline {
+        .icon-background {
+            fill: $mainColor;
+        }
+        .text {
+            color: $mainColor;
+        }
+    }
+}
+
+@mixin icon-size ($size) {
+    font-size: $size;
+    line-height: $size;
+    @include size($size);
+}
+
+// global default
+.vuestrap-icons {
+    @include icon-size ($vuestrap-icons-size-md) display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    .icon {
+        @include size(100%);
+        top: 0%;
+        left: 0%;
+        position: absolute;
+        z-index: 2;
+    }
+    .icon-background {
+        @include size(100%);
+        padding: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    &.icons-bg-fill,
+    &.icons-bg-outline {
+        .icon {
+            @include size(50%);
+            top: 25%;
+            left: 25%;
+        }
+    }
+    .text {
+        position: relative;
+        color: #fff;
+        z-index: 3;
+        font-size: 70%;
+        width: 100%;
+        height: 100%;
+        display: table;
+        text-align: center;
+        > span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+    &.icons-right {
+        margin-left: 0.2em;
+        margin-right: 0;
+    }
+    &.icons-left {
+        margin-left: 0;
+        margin-right: 0.2em;
+    }
+}
+
+// svg icon sizes
+.vuestrap-icons {
+    &.icons-sm {
+        @include icon-size($vuestrap-icons-size-sm)
+    }
+    &.icons-md {
+        @include icon-size($vuestrap-icons-size-md)
+    }
+    &.icons-lg {
+        @include icon-size($vuestrap-icons-size-lg)
+    }
+    &.icons-xl {
+        @include icon-size($vuestrap-icons-size-xl)
+    }
+    &.icons-xxl {
+        @include icon-size($vuestrap-icons-size-xxl)
+    }
+}
+
+// svg icon fill variants
+.vuestrap-icons {
+    //default
+    @include icon-variant($vuestrap-icons-fill-default, $vuestrap-icons-fill-light);
+    // other variants
+    &.icons-primary {
+        @include icon-variant($vuestrap-icons-fill-primary, #fff);
+    }
+    &.icons-info {
+        @include icon-variant($vuestrap-icons-fill-info, #fff);
+    }
+    &.icons-success {
+        @include icon-variant($vuestrap-icons-fill-success, #fff);
+    }
+    &.icons-warning {
+        @include icon-variant($vuestrap-icons-fill-warning, #fff);
+    }
+    &.icons-danger {
+        @include icon-variant($vuestrap-icons-fill-danger, #fff);
+    }
+    &.icons-dark {
+        @include icon-variant($vuestrap-icons-fill-dark, $vuestrap-icons-fill-light);
+    }
+    &.icons-light {
+        @include icon-variant($vuestrap-icons-fill-light, $vuestrap-icons-fill-dark);
+    }
+}
+
+// if icon is inside disabled button, decrease opacity
+.btn.disabled {
+    svg {
+        opacity: 0.5;
+    }
+}
+
+// if icon is inside hovered state button, make it white
+.btn:hover {
+    svg {
+        fill: $vuestrap-icons-fill-light;
+    }
+}

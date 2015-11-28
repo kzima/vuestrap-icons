@@ -1,0 +1,59 @@
+{
+	"name": "icons",
+	"title": "Icons",
+	"description": "SVG sprite consists of 223 icons from Iconic, plus two custom ones: circle-fill and circle-outline.",
+	"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs.</a>",
+	"dependencies": ["vuestrap/core/icons"],
+	"category": "components",
+	"browserSupport": ["IE9+", "Android 4.3"],
+	"options": [
+		{
+			"name": "name",
+			"type": "String",
+			"default": "''",
+			"required": false,
+			"description": "A name of the icon. For more icons please refer to <a href='https://useiconic.com/open/'>https://useiconic.com/open/</a>"
+		},
+		{
+			"name": "background",
+			"type": "String",
+			"default": "''",
+			"required": false,
+			"description": "A name of the background icon. It will be stacked behind the main icon. It supports circle-outline and circle-fill background icons."
+		},
+		{
+			"name": "align",
+			"type": "String",
+			"values": ["left", "right"],
+			"default": "''",
+			"required": false,
+			"description": "Adds extra padding on the left/right of the icon."
+		},
+		{
+			"name": "size",
+			"type": "String",
+			"values": ["sm","md","lg","xl","xxl"],
+			"default": "md",
+			"description": "Size of the icon. 'sm' starts at 1.2em ('sm') and increments by 0.4em for next sizes."
+		}, 
+		{
+			"name": "text",
+			"type": "String",
+			"default": "",
+			"description": "To place custom text above the icon. Works well with background icon `circle-fill` and supports up to two characters."
+		}, 
+		{
+			"name": "variant",
+			"type": "String",
+			"values": ["light", "dark", "primary","success","info","warning","danger"],
+			"default": "light",
+			"description": "Button color context."
+		},
+		{
+			"name": "path",
+			"type": "String",
+			"default": "",
+			"description": "It allows you to specify a path to svg sprite. Default path is set to <code>/node_modules/vuestrap-icons/assets/sprite.svg</code>"
+		}
+	]
+}

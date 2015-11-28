@@ -1,0 +1,36 @@
+{
+  "name": "vuestrap-icons",
+  "homepage": "https://github.com/kzima/vuestrap-icons",
+  "authors": [
+    "kzima <kris@mosquito.ie>"
+  ],
+  "description": "Vuestrap Icons Component is complements Bootstrap 4 with svg icons.",
+  "main": [
+    "dist/vuestrap-icons.js",
+    "dist/vuestrap-icons.js.map",
+    "dist/vuestrap-icons.min.js",
+    "dist/vuestrap-icons.css",
+    "dist/vuestrap-icons.css.map",
+    "dist/vuestrap-icons.min.css"
+  ],
+  "moduleType": ["amd","globals"],
+  "keywords": [
+    "bootstrap4",
+    "vuestrap",
+    "vue-components",
+    "web-components"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "docs",
+    "src",
+    "build",
+    "assets",
+    "gulpfile.js",
+    "index.html",
+    "webpack*.js"
+  ]
+}

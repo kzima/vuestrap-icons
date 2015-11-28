@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- main vue app -->
+<html lang="en"  id="docs">
+	<head>
+		<title v-text="title">Vuestrap Docs</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="/assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+		<link href='/dist/vuestrap-icons.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+		<style>
+			html {
+				font-size: 16px;
+			}
+			body {
+				margin: auto;
+				padding: 1.5rem;
+  			padding-top: 5em;
+			}
+			h1, h2, h3 {
+				font-family: 'Source Sans Pro', sans-serif;
+				color: #563d7c;
+			}
+			h2 {
+				padding-bottom: 0.3rem;
+				border-bottom: 1px solid #42b983;
+			}
+			h3 {
+				font-size: 1.3rem !important;
+			}
+			.navbar {
+				padding: 0.2em 0 !important;
+				line-height: 3em;
+			}
+			.navbar-brand {
+				padding: 0 !important;;
+			}
+			.navbar-brand img{
+				height: 2.5em;
+			}
+			[v-cloak] {
+				display: none;
+			}
+			.list-group-item.active {
+				color: #42b983 !important;
+				border-color: #42b983 !important;
+				background-color: transparent !important;
+			}
+		</style>
+	</head>
+
+
+
+	<body v-cloak>
+		<!-- header -->
+		<nav class="navbar navbar-fixed-top navbar-light bg-faded">
+	    <div class="container">
+	        <a class="navbar-brand text-center" href="/">
+						<img src="/assets/vuestrap-logo.svg" alt="Vuestrap logo">
+					</a>
+					<a class="navbar-brand text-center" href="/">
+						Documentation
+					</a>
+					<ul class="nav navbar-nav pull-right">
+						<li class="nav-item">
+							<a href="{{pkg.repository.url}}" class="btn btn-success">Github</a>
+						</li>
+	    </div><!-- /.container -->
+	  </nav><!-- /.navbar -->
+	<div id="search" class="container">
+			<div class="row row-offcanvas row-offcanvas-right">
+				<div class="col-xs-12 col-sm-9">
+
+			    <!-- demo component -->
+			    <demo :component="currentComponent" v-if="currentComponent.controls">
+						<!-- Html controls start-->
+						<div slot="controls" v-if="currentComponent.controls">
+							<label>
+								size
+								<select v-model="currentComponent.controls.size">
+									<option v-for="option in currentComponent.controls.sizes" v-bind:value="option.value">
+								    {{ option.text }}
+								  </option>
+								</select>
+							</label>
+
+							<label>
+								variant
+								<select v-model="currentComponent.controls.variant">
+									<option v-for="option in currentComponent.controls.variants" v-bind:value="option.value">
+								    {{ option.text }}
+								  </option>
+								</select>
+							</label>
+						</div>
+						<!-- Html controls end-->
+						
+						<!-- Html markup start-->
+						<div slot="markup" v-bind:class="{ inverse: currentComponent.controls.variant === 'light' }">
+
+							<icon name="info" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg" path="/assets/sprite.svg"></icon>
+							<icon name="info" background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon>
+							<icon name="info" background="circle-fill" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon>
+							<icon background="circle-fill" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="1" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="1" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="2" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="11" path="/assets/sprite.svg"></icon>
+							<button class="btn btn-md" aria-label="settings"><icon name="cog" :size="'md'" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon> </button>
+							<button class="btn btn-md"><icon name="cog" :size="'md'" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon> settings</button>
+
+						</div>
+						<!-- Html markup end-->
+					</demo>
+
+			  </div>
+				
+				<!-- sidebar -->
+				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+					<!-- 
+-->
+
+          <!-- introduction button -->
+          <div class="list-group">
+            <a href="/" class="list-group-item" v-bind:class="{active: !currentComponent.meta.name}">Introduction</a>
+          </div>
+          <div class="m-b"></div>
+
+
+          <search :list="components" :current="currentComponent.meta.name"></search>
+          
+
+				</div><!--/sidebar-->
+
+			</div><!--/row-->
+		</div><!--/container-->
+		<script src="/node_modules/vue/dist/vue.js"></script>
+		<script src="/dist/vuestrap-icons.js"></script>
+		<script src="/build/build.js"></script>
+	</body>
+</html>

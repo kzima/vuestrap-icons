@@ -1,0 +1,56 @@
+<% include ../../templates/header %>
+	<div id="search" class="container">
+			<div class="row row-offcanvas row-offcanvas-right">
+				<div class="col-xs-12 col-sm-9">
+
+			    <!-- demo component -->
+			    <demo :component="currentComponent" v-if="currentComponent.controls">
+						<!-- Html controls start-->
+						<div slot="controls" v-if="currentComponent.controls">
+							<label>
+								size
+								<select v-model="currentComponent.controls.size">
+									<option v-for="option in currentComponent.controls.sizes" v-bind:value="option.value">
+								    {{ option.text }}
+								  </option>
+								</select>
+							</label>
+
+							<label>
+								variant
+								<select v-model="currentComponent.controls.variant">
+									<option v-for="option in currentComponent.controls.variants" v-bind:value="option.value">
+								    {{ option.text }}
+								  </option>
+								</select>
+							</label>
+						</div>
+						<!-- Html controls end-->
+						
+						<!-- Html markup start-->
+						<div slot="markup" v-bind:class="{ inverse: currentComponent.controls.variant === 'light' }">
+
+							<icon name="info" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg" path="/assets/sprite.svg"></icon>
+							<icon name="info" background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon>
+							<icon name="info" background="circle-fill" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon>
+							<icon background="circle-fill" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="1" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="1" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="2" path="/assets/sprite.svg"></icon>
+							<icon background="circle-outline" :size="currentComponent.controls.size" :variant="currentComponent.controls.variant" text="11" path="/assets/sprite.svg"></icon>
+							<button class="btn btn-md" aria-label="settings"><icon name="cog" :size="'md'" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon> </button>
+							<button class="btn btn-md"><icon name="cog" :size="'md'" :variant="currentComponent.controls.variant" path="/assets/sprite.svg"></icon> settings</button>
+
+						</div>
+						<!-- Html markup end-->
+					</demo>
+
+			  </div>
+				
+				<!-- sidebar -->
+				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+					<% include ../../templates/sidebar %>
+				</div><!--/sidebar-->
+
+			</div><!--/row-->
+		</div><!--/container-->
+<% include ../../templates/footer %>
