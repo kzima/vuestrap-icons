@@ -44,77 +44,123 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// import components meta data
+	// import normalize, grid, utilities and Vue
 	'use strict';
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _srcDocsComponentsIcons = __webpack_require__(1);
+	__webpack_require__(1);
 	
-	var _srcDocsComponentsIcons2 = _interopRequireDefault(_srcDocsComponentsIcons);
+	// import pages
 	
-	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(9);
+	var _srcDocsPagesIntroduction = __webpack_require__(6);
 	
-	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
+	var _srcDocsPagesIntroduction2 = _interopRequireDefault(_srcDocsPagesIntroduction);
 	
-	var _vuestrapDocsSrcComponentsSearch = __webpack_require__(21);
+	var _srcDocsPagesIcons = __webpack_require__(8);
+	
+	var _srcDocsPagesIcons2 = _interopRequireDefault(_srcDocsPagesIcons);
+	
+	// import component dependencies
+	
+	var _vuestrapDocsSrcComponentsSearch = __webpack_require__(32);
 	
 	var _vuestrapDocsSrcComponentsSearch2 = _interopRequireDefault(_vuestrapDocsSrcComponentsSearch);
 	
 	// import vuestrap dependencies
 	
-	__webpack_require__(33);
+	__webpack_require__(44);
+	
+	__webpack_require__(47);
+	
+	__webpack_require__(50);
 	
 	__webpack_require__(36);
 	
-	__webpack_require__(39);
+	__webpack_require__(51);
 	
-	__webpack_require__(25);
+	__webpack_require__(54);
 	
-	__webpack_require__(40);
+	// import package.json meta data
 	
-	__webpack_require__(43);
-	
-	// import other dependencies
-	
-	var _packageJson = __webpack_require__(46);
+	var _packageJson = __webpack_require__(57);
 	
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 	
+	// import route util
+	
+	var _utils = __webpack_require__(14);
+	
+	// components
+	// list of all dependencies
+	var components = {
+		search: _vuestrapDocsSrcComponentsSearch2['default']
+	};
+	
+	// component pages
+	var pages = {
+		intro: _srcDocsPagesIntroduction2['default'],
+		icons: _srcDocsPagesIcons2['default']
+	};
+	
+	// list of routes
+	var routes = [];
+	var demoPages = [];
+	
+	// list of all comps used in the searchbar
+	for (var key in pages) {
+		if (pages.hasOwnProperty(key)) {
+			if (key !== 'intro') {
+				var meta = pages[key].data().meta;
+				var route = {
+					name: meta.name,
+					title: meta.title,
+					pageTitle: 'Vuestrap Docs - ' + meta.title,
+					route: '/' + meta.name,
+					url: '/#/' + meta.name
+				};
+				// add route for demo page
+				routes.push(route);
+				// add to demoPages Collection
+				demoPages.push(route);
+			} else {
+				// add special route for intro
+				routes.push({
+					name: 'intro',
+					title: 'Introduction',
+					pageTitle: 'Vuestrap Docs',
+					route: '/',
+					url: '/#/'
+				});
+			}
+			// add to components
+			components[key] = pages[key];
+		}
+	}
+	
 	// start docs instance
-	new Vue({
+	window.docs = new Vue({
 		el: '#docs',
 		data: {
-			title: 'Vuestrap Docs',
+			pageTitle: 'Vuestrap Docs',
 			pkg: _packageJson2['default'],
-			page: null,
-			components: [_srcDocsComponentsIcons2['default']]
+			demoPages: demoPages,
+			currentView: ''
 		},
-		computed: {
-			currentComponent: function currentComponent() {
-				var _this = this;
-	
-				var currentComponent = null; //{meta: {options: [], name: ''}, snippet: '', controls: null}
-				this.components.forEach(function (component) {
-					if (component.meta.name === _this.page) {
-						currentComponent = component;
-					}
-				});
-				return currentComponent;
-			}
-		},
-		components: {
-			'icon': vuestrapIcons.icons,
-			'demo': _vuestrapDocsSrcComponentsDemo2['default'],
-			'search': _vuestrapDocsSrcComponentsSearch2['default']
-		},
+		components: components,
 		ready: function ready() {
-			var segments = window.location.pathname.split('/');
-			segments = segments.filter(function (n) {
-				return n !== '';
+			var _this = this;
+	
+			// handle routes for other demo pages
+			routes.forEach(function (route) {
+				(0, _utils.handleRoute)(route, function () {
+					_this.$set('currentView', route.name);
+					_this.$set('pageTitle', route.pageTitle);
+				});
 			});
-			this.page = segments[segments.length - 1];
-			this.title = this.currentComponent && this.currentComponent.meta.title ? 'Vuestrap Docs - ' + this.currentComponent.meta.title : 'Vuestrap Docs - ' + this.pkg.name;
+	
+			// init router
+			_utils.router.init('/');
 		}
 	});
 
@@ -122,148 +168,29 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// import core stuff
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _docsIconsSnippetHtml = __webpack_require__(2);
-	
-	var _docsIconsSnippetHtml2 = _interopRequireDefault(_docsIconsSnippetHtml);
-	
-	var _iconsJson = __webpack_require__(3);
-	
-	var _iconsJson2 = _interopRequireDefault(_iconsJson);
-	
-	__webpack_require__(4);
-	
-	var _utils = __webpack_require__(8);
-	
-	exports['default'] = {
-	  meta: _iconsJson2['default'],
-	  snippet: _docsIconsSnippetHtml2['default'],
-	  controls: {
-	    size: 'xxl',
-	    sizes: _utils.sizes.concat([{ text: 'xl', value: 'xl' }, { text: 'xxl', value: 'xxl' }]),
-	    variant: 'info',
-	    variants: _utils.variants.concat([{ text: 'light', value: 'light' }, { text: 'dark', value: 'dark' }])
-	  }
-	};
-	module.exports = exports['default'];
+	__webpack_require__(2);
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"info\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"info\"</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-outline\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"info\"</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-fill\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-fill\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span>1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-outline\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span>1<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-outline\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span>2<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-value\">\"circle-outline\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"xxl\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span>11<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">class</span>=<span class=\"hljs-value\">\"btn btn-md\"</span> <span class=\"hljs-attribute\">aria-label</span>=<span class=\"hljs-value\">\"settings\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"cog\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span> &gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">class</span>=<span class=\"hljs-value\">\"btn btn-md\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">icon</span> <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"cog\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"info\"</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">icon</span>&gt;</span> settings\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>";
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"name": "icons",
-		"title": "Icons",
-		"description": "SVG sprite consists of 223 icons from Iconic, plus two custom ones: circle-fill and circle-outline.",
-		"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs.</a>",
-		"dependencies": [
-			"vuestrap/core/icons"
-		],
-		"category": "components",
-		"browserSupport": [
-			"IE9+",
-			"Android 4.3"
-		],
-		"options": [
-			{
-				"name": "name",
-				"type": "String",
-				"default": "''",
-				"required": false,
-				"description": "A name of the icon. For more icons please refer to <a href='https://useiconic.com/open/'>https://useiconic.com/open/</a>"
-			},
-			{
-				"name": "background",
-				"type": "String",
-				"default": "''",
-				"required": false,
-				"description": "A name of the background icon. It will be stacked behind the main icon. It supports circle-outline and circle-fill background icons."
-			},
-			{
-				"name": "align",
-				"type": "String",
-				"values": [
-					"left",
-					"right"
-				],
-				"default": "''",
-				"required": false,
-				"description": "Adds extra padding on the left/right of the icon."
-			},
-			{
-				"name": "size",
-				"type": "String",
-				"values": [
-					"sm",
-					"md",
-					"lg",
-					"xl",
-					"xxl"
-				],
-				"default": "md",
-				"description": "Size of the icon. 'sm' starts at 1.2em ('sm') and increments by 0.4em for next sizes."
-			},
-			{
-				"name": "text",
-				"type": "String",
-				"default": "",
-				"description": "To place custom text above the icon. Works well with background icon `circle-fill` and supports up to two characters."
-			},
-			{
-				"name": "variant",
-				"type": "String",
-				"values": [
-					"light",
-					"dark",
-					"primary",
-					"success",
-					"info",
-					"warning",
-					"danger"
-				],
-				"default": "light",
-				"description": "Button color context."
-			},
-			{
-				"name": "path",
-				"type": "String",
-				"default": "",
-				"description": "It allows you to specify a path to svg sprite. Default path is set to <code>/node_modules/vuestrap-icons/assets/sprite.svg</code>"
-			}
-		]
-	};
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(5);
+	var content = __webpack_require__(3);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss", function() {
-				var newContent = require("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss");
+			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_core.scss", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_core.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -273,21 +200,21 @@
 	}
 
 /***/ },
-/* 5 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block; }\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden],\ntemplate {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active {\n  outline: 0; }\n\na:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb,\nstrong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit;\n  font: inherit;\n  margin: 0; }\n\nbutton {\n  overflow: visible; }\n\nbutton,\nselect {\n  text-transform: none; }\n\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd,\nth {\n  padding: 0; }\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    text-shadow: none !important;\n    box-shadow: none !important; }\n  a,\n  a:visited {\n    text-decoration: underline; }\n  abbr[title]::after {\n    content: \" (\" attr(title) \")\"; }\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid; }\n  thead {\n    display: table-header-group; }\n  tr,\n  img {\n    page-break-inside: avoid; }\n  img {\n    max-width: 100% !important; }\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3; }\n  h2,\n  h3 {\n    page-break-after: avoid; }\n  .navbar {\n    display: none; }\n  .btn > .caret,\n  .dropup > .btn > .caret {\n    border-top-color: #000 !important; }\n  .label {\n    border: 1px solid #000; }\n  .table {\n    border-collapse: collapse !important; }\n    .table td,\n    .table th {\n      background-color: #fff !important; }\n  .table-bordered th,\n  .table-bordered td {\n    border: 1px solid #ddd !important; } }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n@-moz-viewport {\n  width: device-width; }\n\n@-ms-viewport {\n  width: device-width; }\n\n@-o-viewport {\n  width: device-width; }\n\n@-webkit-viewport {\n  width: device-width; }\n\n@viewport {\n  width: device-width; }\n\nhtml {\n  font-size: 16px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #373a3c;\n  background-color: #fff; }\n\nh1, h2, h3, h4, h5, h6 {\n  margin-top: 0;\n  margin-bottom: .5rem; }\n\np {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #818a91; }\n\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit; }\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0; }\n\ndt {\n  font-weight: bold; }\n\ndd {\n  margin-bottom: .5rem;\n  margin-left: 0; }\n\nblockquote {\n  margin: 0 0 1rem; }\n\na {\n  color: #563d7c;\n  text-decoration: none; }\n  a:focus, a:hover {\n    color: #322449;\n    text-decoration: underline; }\n  a:focus {\n    outline: thin dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px; }\n\npre {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nfigure {\n  margin: 0 0 1rem; }\n\nimg {\n  vertical-align: middle; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\na,\narea,\nbutton,\n[role=\"button\"],\ninput,\nlabel,\nselect,\nsummary,\ntextarea {\n  -ms-touch-action: manipulation;\n      touch-action: manipulation; }\n\ntable {\n  background-color: transparent; }\n\ncaption {\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  color: #818a91;\n  text-align: left;\n  caption-side: bottom; }\n\nth {\n  text-align: left; }\n\nlabel {\n  display: inline-block;\n  margin-bottom: .5rem; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  margin: 0;\n  line-height: inherit;\n  border-radius: 0; }\n\ntextarea {\n  resize: vertical; }\n\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0; }\n\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: .5rem;\n  font-size: 1.5rem;\n  line-height: inherit; }\n\ninput[type=\"search\"] {\n  box-sizing: inherit;\n  -webkit-appearance: none; }\n\noutput {\n  display: inline-block; }\n\n[hidden] {\n  display: none !important; }\n\n.fade {\n  opacity: 0;\n  -webkit-transition: opacity .15s linear;\n  transition: opacity .15s linear; }\n  .fade.in {\n    opacity: 1; }\n\n.collapse {\n  display: none; }\n  .collapse.in {\n    display: block; }\n\n.collapsing {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  -webkit-transition-timing-function: ease;\n          transition-timing-function: ease;\n  -webkit-transition-duration: .35s;\n          transition-duration: .35s;\n  -webkit-transition-property: height;\n  transition-property: height; }\n\n.close {\n  float: right;\n  font-size: 1.5rem;\n  font-weight: bold;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: .2; }\n  .close:focus, .close:hover {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer;\n    opacity: .5; }\n\nbutton.close {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\ncode {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #bd4147;\n  background-color: #f7f7f9;\n  border-radius: 0.25rem; }\n\nkbd {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #fff;\n  background-color: #333;\n  border-radius: 0.2rem; }\n  kbd kbd {\n    padding: 0;\n    font-size: 100%;\n    font-weight: bold; }\n\npre {\n  display: block;\n  margin-top: 0;\n  margin-bottom: 1rem;\n  font-size: 90%;\n  line-height: 1.5;\n  color: #373a3c; }\n  pre code {\n    padding: 0;\n    font-size: inherit;\n    color: inherit;\n    background-color: transparent;\n    border-radius: 0; }\n\n.pre-scrollable {\n  max-height: 340px;\n  overflow-y: scroll; }\n\n.input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate; }\n  .input-group .form-control {\n    position: relative;\n    z-index: 2;\n    float: left;\n    width: 100%;\n    margin-bottom: 0; }\n\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell; }\n  .input-group-addon:not(:first-child):not(:last-child),\n  .input-group-btn:not(:first-child):not(:last-child),\n  .input-group .form-control:not(:first-child):not(:last-child) {\n    border-radius: 0; }\n\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle; }\n\n.input-group-addon {\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: normal;\n  line-height: 1;\n  color: #55595c;\n  text-align: center;\n  background-color: #eceeef;\n  border: 1px solid #ccc;\n  border-radius: 0.25rem; }\n  .input-group-addon.form-control-sm,\n  .input-group-sm > .input-group-addon,\n  .input-group-sm > .input-group-btn > .input-group-addon.btn {\n    padding: 0.275rem 0.75rem;\n    font-size: 0.875rem;\n    border-radius: 0.2rem; }\n  .input-group-addon.form-control-lg,\n  .input-group-lg > .input-group-addon,\n  .input-group-lg > .input-group-btn > .input-group-addon.btn {\n    padding: 0.75rem 1.25rem;\n    font-size: 1.25rem;\n    border-radius: 0.3rem; }\n  .input-group-addon input[type=\"radio\"],\n  .input-group-addon input[type=\"checkbox\"] {\n    margin-top: 0; }\n\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0; }\n\n.input-group-addon:first-child {\n  border-right: 0; }\n\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0; }\n\n.input-group-addon:last-child {\n  border-left: 0; }\n\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap; }\n  .input-group-btn > .btn {\n    position: relative; }\n    .input-group-btn > .btn + .btn {\n      margin-left: -1px; }\n    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {\n      z-index: 2; }\n  .input-group-btn:first-child > .btn,\n  .input-group-btn:first-child > .btn-group {\n    margin-right: -1px; }\n  .input-group-btn:last-child > .btn,\n  .input-group-btn:last-child > .btn-group {\n    z-index: 2;\n    margin-left: -1px; }\n\n.embed-responsive {\n  position: relative;\n  display: block;\n  height: 0;\n  padding: 0;\n  overflow: hidden; }\n  .embed-responsive .embed-responsive-item,\n  .embed-responsive iframe,\n  .embed-responsive embed,\n  .embed-responsive object,\n  .embed-responsive video {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 0; }\n\n.embed-responsive-21by9 {\n  padding-bottom: 42.85714%; }\n\n.embed-responsive-16by9 {\n  padding-bottom: 56.25%; }\n\n.embed-responsive-4by3 {\n  padding-bottom: 75%; }\n\nh1, h2, h3, h4, h5, h6,\n.h1, .h2, .h3, .h4, .h5, .h6 {\n  margin-bottom: 0.5rem;\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.1;\n  color: inherit; }\n\nh1 {\n  font-size: 2.5rem; }\n\nh2 {\n  font-size: 2rem; }\n\nh3 {\n  font-size: 1.75rem; }\n\nh4 {\n  font-size: 1.5rem; }\n\nh5 {\n  font-size: 1.25rem; }\n\nh6 {\n  font-size: 1rem; }\n\n.h1 {\n  font-size: 2.5rem; }\n\n.h2 {\n  font-size: 2rem; }\n\n.h3 {\n  font-size: 1.75rem; }\n\n.h4 {\n  font-size: 1.5rem; }\n\n.h5 {\n  font-size: 1.25rem; }\n\n.h6 {\n  font-size: 1rem; }\n\n.lead {\n  font-size: 1.25rem;\n  font-weight: 300; }\n\n.display-1 {\n  font-size: 6rem;\n  font-weight: 300; }\n\n.display-2 {\n  font-size: 5.5rem;\n  font-weight: 300; }\n\n.display-3 {\n  font-size: 4.5rem;\n  font-weight: 300; }\n\n.display-4 {\n  font-size: 3.5rem;\n  font-weight: 300; }\n\nhr {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1); }\n\nsmall,\n.small {\n  font-size: 80%;\n  font-weight: normal; }\n\nmark,\n.mark {\n  padding: .2em;\n  background-color: #fcf8e3; }\n\n.list-unstyled {\n  padding-left: 0;\n  list-style: none; }\n\n.list-inline {\n  padding-left: 0;\n  list-style: none;\n  margin-left: -5px; }\n  .list-inline > li {\n    display: inline-block;\n    padding-right: 5px;\n    padding-left: 5px; }\n\n.dl-horizontal {\n  margin-right: -1.875rem;\n  margin-left: -1.875rem; }\n  .dl-horizontal::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.initialism {\n  font-size: 90%;\n  text-transform: uppercase; }\n\n.blockquote {\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  font-size: 1.25rem;\n  border-left: 0.25rem solid #eceeef; }\n  .blockquote p:last-child,\n  .blockquote ul:last-child,\n  .blockquote ol:last-child {\n    margin-bottom: 0; }\n  .blockquote footer {\n    display: block;\n    font-size: 80%;\n    line-height: 1.5;\n    color: #818a91; }\n    .blockquote footer::before {\n      content: \"\\2014   \\A0\"; }\n\n.blockquote-reverse {\n  padding-right: 1rem;\n  padding-left: 0;\n  text-align: right;\n  border-right: 0.25rem solid #eceeef;\n  border-left: 0; }\n  .blockquote-reverse footer::before {\n    content: \"\"; }\n  .blockquote-reverse footer::after {\n    content: \"\\A0   \\2014\"; }\n\n.bg-inverse {\n  color: #eceeef;\n  background-color: #373a3c; }\n\n.bg-faded {\n  background-color: #f7f7f9; }\n\n.bg-primary {\n  color: #fff !important;\n  background-color: #563d7c !important; }\n\na.bg-primary:focus, a.bg-primary:hover {\n  background-color: #3e2c5a; }\n\n.bg-success {\n  color: #fff !important;\n  background-color: #42b983 !important; }\n\na.bg-success:focus, a.bg-success:hover {\n  background-color: #359368; }\n\n.bg-info {\n  color: #fff !important;\n  background-color: #5bc0de !important; }\n\na.bg-info:focus, a.bg-info:hover {\n  background-color: #31b0d5; }\n\n.bg-warning {\n  color: #fff !important;\n  background-color: #f0ad4e !important; }\n\na.bg-warning:focus, a.bg-warning:hover {\n  background-color: #ec971f; }\n\n.bg-danger {\n  color: #fff !important;\n  background-color: #d9534f !important; }\n\na.bg-danger:focus, a.bg-danger:hover {\n  background-color: #c9302c; }\n\n.hidden-xs-up {\n  display: none !important; }\n\n@media (max-width: 543px) {\n  .hidden-xs-down {\n    display: none !important; } }\n\n@media (min-width: 544px) {\n  .hidden-sm-up {\n    display: none !important; } }\n\n@media (max-width: 767px) {\n  .hidden-sm-down {\n    display: none !important; } }\n\n@media (min-width: 768px) {\n  .hidden-md-up {\n    display: none !important; } }\n\n@media (max-width: 991px) {\n  .hidden-md-down {\n    display: none !important; } }\n\n@media (min-width: 992px) {\n  .hidden-lg-up {\n    display: none !important; } }\n\n@media (max-width: 1199px) {\n  .hidden-lg-down {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-xl-up {\n    display: none !important; } }\n\n.hidden-xl-down {\n  display: none !important; }\n\n.visible-print-block {\n  display: none !important; }\n  @media print {\n    .visible-print-block {\n      display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n  @media print {\n    .visible-print-inline {\n      display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n  @media print {\n    .visible-print-inline-block {\n      display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n.m-a-0 {\n  margin: 0 !important; }\n\n.m-t-0 {\n  margin-top: 0 !important; }\n\n.m-r-0 {\n  margin-right: 0 !important; }\n\n.m-b-0 {\n  margin-bottom: 0 !important; }\n\n.m-l-0 {\n  margin-left: 0 !important; }\n\n.m-x-0 {\n  margin-right: 0 !important;\n  margin-left: 0 !important; }\n\n.m-y-0 {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important; }\n\n.m-a {\n  margin: 1rem !important; }\n\n.m-t {\n  margin-top: 1rem !important; }\n\n.m-r {\n  margin-right: 1rem !important; }\n\n.m-b {\n  margin-bottom: 1rem !important; }\n\n.m-l {\n  margin-left: 1rem !important; }\n\n.m-x {\n  margin-right: 1rem !important;\n  margin-left: 1rem !important; }\n\n.m-y {\n  margin-top: 1rem !important;\n  margin-bottom: 1rem !important; }\n\n.m-x-auto {\n  margin-right: auto !important;\n  margin-left: auto !important; }\n\n.m-a-md {\n  margin: 1.5rem !important; }\n\n.m-t-md {\n  margin-top: 1.5rem !important; }\n\n.m-r-md {\n  margin-right: 1.5rem !important; }\n\n.m-b-md {\n  margin-bottom: 1.5rem !important; }\n\n.m-l-md {\n  margin-left: 1.5rem !important; }\n\n.m-x-md {\n  margin-right: 1.5rem !important;\n  margin-left: 1.5rem !important; }\n\n.m-y-md {\n  margin-top: 1.5rem !important;\n  margin-bottom: 1.5rem !important; }\n\n.m-a-lg {\n  margin: 3rem !important; }\n\n.m-t-lg {\n  margin-top: 3rem !important; }\n\n.m-r-lg {\n  margin-right: 3rem !important; }\n\n.m-b-lg {\n  margin-bottom: 3rem !important; }\n\n.m-l-lg {\n  margin-left: 3rem !important; }\n\n.m-x-lg {\n  margin-right: 3rem !important;\n  margin-left: 3rem !important; }\n\n.m-y-lg {\n  margin-top: 3rem !important;\n  margin-bottom: 3rem !important; }\n\n.p-a-0 {\n  padding: 0 !important; }\n\n.p-t-0 {\n  padding-top: 0 !important; }\n\n.p-r-0 {\n  padding-right: 0 !important; }\n\n.p-b-0 {\n  padding-bottom: 0 !important; }\n\n.p-l-0 {\n  padding-left: 0 !important; }\n\n.p-x-0 {\n  padding-right: 0 !important;\n  padding-left: 0 !important; }\n\n.p-y-0 {\n  padding-top: 0 !important;\n  padding-bottom: 0 !important; }\n\n.p-a {\n  padding: 1rem !important; }\n\n.p-t {\n  padding-top: 1rem !important; }\n\n.p-r {\n  padding-right: 1rem !important; }\n\n.p-b {\n  padding-bottom: 1rem !important; }\n\n.p-l {\n  padding-left: 1rem !important; }\n\n.p-x {\n  padding-right: 1rem !important;\n  padding-left: 1rem !important; }\n\n.p-y {\n  padding-top: 1rem !important;\n  padding-bottom: 1rem !important; }\n\n.p-a-md {\n  padding: 1.5rem !important; }\n\n.p-t-md {\n  padding-top: 1.5rem !important; }\n\n.p-r-md {\n  padding-right: 1.5rem !important; }\n\n.p-b-md {\n  padding-bottom: 1.5rem !important; }\n\n.p-l-md {\n  padding-left: 1.5rem !important; }\n\n.p-x-md {\n  padding-right: 1.5rem !important;\n  padding-left: 1.5rem !important; }\n\n.p-y-md {\n  padding-top: 1.5rem !important;\n  padding-bottom: 1.5rem !important; }\n\n.p-a-lg {\n  padding: 3rem !important; }\n\n.p-t-lg {\n  padding-top: 3rem !important; }\n\n.p-r-lg {\n  padding-right: 3rem !important; }\n\n.p-b-lg {\n  padding-bottom: 3rem !important; }\n\n.p-l-lg {\n  padding-left: 3rem !important; }\n\n.p-x-lg {\n  padding-right: 3rem !important;\n  padding-left: 3rem !important; }\n\n.p-y-lg {\n  padding-top: 3rem !important;\n  padding-bottom: 3rem !important; }\n\n.pos-f-t {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 1030; }\n\n.clearfix::after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n.invisible {\n  visibility: hidden !important; }\n\n.text-hide {\n  font: \"0/0\" a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-justify {\n  text-align: justify !important; }\n\n.text-nowrap {\n  white-space: nowrap !important; }\n\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.text-xs-left {\n  text-align: left !important; }\n\n.text-xs-right {\n  text-align: right !important; }\n\n.text-xs-center {\n  text-align: center !important; }\n\n@media (min-width: 544px) {\n  .text-sm-left {\n    text-align: left !important; }\n  .text-sm-right {\n    text-align: right !important; }\n  .text-sm-center {\n    text-align: center !important; } }\n\n@media (min-width: 768px) {\n  .text-md-left {\n    text-align: left !important; }\n  .text-md-right {\n    text-align: right !important; }\n  .text-md-center {\n    text-align: center !important; } }\n\n@media (min-width: 992px) {\n  .text-lg-left {\n    text-align: left !important; }\n  .text-lg-right {\n    text-align: right !important; }\n  .text-lg-center {\n    text-align: center !important; } }\n\n@media (min-width: 1200px) {\n  .text-xl-left {\n    text-align: left !important; }\n  .text-xl-right {\n    text-align: right !important; }\n  .text-xl-center {\n    text-align: center !important; } }\n\n.text-lowercase {\n  text-transform: lowercase !important; }\n\n.text-uppercase {\n  text-transform: uppercase !important; }\n\n.text-capitalize {\n  text-transform: capitalize !important; }\n\n.text-muted {\n  color: #818a91; }\n\n.text-primary {\n  color: #563d7c !important; }\n\na.text-primary:focus, a.text-primary:hover {\n  color: #3e2c5a; }\n\n.text-success {\n  color: #42b983 !important; }\n\na.text-success:focus, a.text-success:hover {\n  color: #359368; }\n\n.text-info {\n  color: #5bc0de !important; }\n\na.text-info:focus, a.text-info:hover {\n  color: #31b0d5; }\n\n.text-warning {\n  color: #f0ad4e !important; }\n\na.text-warning:focus, a.text-warning:hover {\n  color: #ec971f; }\n\n.text-danger {\n  color: #d9534f !important; }\n\na.text-danger:focus, a.text-danger:hover {\n  color: #c9302c; }\n\n.container {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n  @media (min-width: 544px) {\n    .container {\n      max-width: 576px; } }\n  @media (min-width: 768px) {\n    .container {\n      max-width: 720px; } }\n  @media (min-width: 992px) {\n    .container {\n      max-width: 940px; } }\n  @media (min-width: 1200px) {\n    .container {\n      max-width: 1140px; } }\n\n.container-fluid {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container-fluid::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.row {\n  margin-left: -0.9375rem;\n  margin-right: -0.9375rem; }\n  .row::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-1 {\n  width: 8.33333%; }\n\n.col-xs-2 {\n  width: 16.66667%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-4 {\n  width: 33.33333%; }\n\n.col-xs-5 {\n  width: 41.66667%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-7 {\n  width: 58.33333%; }\n\n.col-xs-8 {\n  width: 66.66667%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-10 {\n  width: 83.33333%; }\n\n.col-xs-11 {\n  width: 91.66667%; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-pull-1 {\n  right: 8.33333%; }\n\n.col-xs-pull-2 {\n  right: 16.66667%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-4 {\n  right: 33.33333%; }\n\n.col-xs-pull-5 {\n  right: 41.66667%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-7 {\n  right: 58.33333%; }\n\n.col-xs-pull-8 {\n  right: 66.66667%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-10 {\n  right: 83.33333%; }\n\n.col-xs-pull-11 {\n  right: 91.66667%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-push-1 {\n  left: 8.33333%; }\n\n.col-xs-push-2 {\n  left: 16.66667%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-4 {\n  left: 33.33333%; }\n\n.col-xs-push-5 {\n  left: 41.66667%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-7 {\n  left: 58.33333%; }\n\n.col-xs-push-8 {\n  left: 66.66667%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-10 {\n  left: 83.33333%; }\n\n.col-xs-push-11 {\n  left: 91.66667%; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-offset-0 {\n  margin-left: 0%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66667%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66667%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66667%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66667%; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n@media (min-width: 544px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-1 {\n    width: 8.33333%; }\n  .col-sm-2 {\n    width: 16.66667%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-4 {\n    width: 33.33333%; }\n  .col-sm-5 {\n    width: 41.66667%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-7 {\n    width: 58.33333%; }\n  .col-sm-8 {\n    width: 66.66667%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-10 {\n    width: 83.33333%; }\n  .col-sm-11 {\n    width: 91.66667%; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-pull-1 {\n    right: 8.33333%; }\n  .col-sm-pull-2 {\n    right: 16.66667%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-4 {\n    right: 33.33333%; }\n  .col-sm-pull-5 {\n    right: 41.66667%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-7 {\n    right: 58.33333%; }\n  .col-sm-pull-8 {\n    right: 66.66667%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-10 {\n    right: 83.33333%; }\n  .col-sm-pull-11 {\n    right: 91.66667%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-push-1 {\n    left: 8.33333%; }\n  .col-sm-push-2 {\n    left: 16.66667%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-4 {\n    left: 33.33333%; }\n  .col-sm-push-5 {\n    left: 41.66667%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-7 {\n    left: 58.33333%; }\n  .col-sm-push-8 {\n    left: 66.66667%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-10 {\n    left: 83.33333%; }\n  .col-sm-push-11 {\n    left: 91.66667%; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-offset-0 {\n    margin-left: 0%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66667%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66667%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66667%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66667%; }\n  .col-sm-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 768px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-1 {\n    width: 8.33333%; }\n  .col-md-2 {\n    width: 16.66667%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-4 {\n    width: 33.33333%; }\n  .col-md-5 {\n    width: 41.66667%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-7 {\n    width: 58.33333%; }\n  .col-md-8 {\n    width: 66.66667%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-10 {\n    width: 83.33333%; }\n  .col-md-11 {\n    width: 91.66667%; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-pull-1 {\n    right: 8.33333%; }\n  .col-md-pull-2 {\n    right: 16.66667%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-4 {\n    right: 33.33333%; }\n  .col-md-pull-5 {\n    right: 41.66667%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-7 {\n    right: 58.33333%; }\n  .col-md-pull-8 {\n    right: 66.66667%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-10 {\n    right: 83.33333%; }\n  .col-md-pull-11 {\n    right: 91.66667%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-push-1 {\n    left: 8.33333%; }\n  .col-md-push-2 {\n    left: 16.66667%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-4 {\n    left: 33.33333%; }\n  .col-md-push-5 {\n    left: 41.66667%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-7 {\n    left: 58.33333%; }\n  .col-md-push-8 {\n    left: 66.66667%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-10 {\n    left: 83.33333%; }\n  .col-md-push-11 {\n    left: 91.66667%; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-offset-0 {\n    margin-left: 0%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333%; }\n  .col-md-offset-2 {\n    margin-left: 16.66667%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333%; }\n  .col-md-offset-5 {\n    margin-left: 41.66667%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333%; }\n  .col-md-offset-8 {\n    margin-left: 66.66667%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333%; }\n  .col-md-offset-11 {\n    margin-left: 91.66667%; }\n  .col-md-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 992px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-1 {\n    width: 8.33333%; }\n  .col-lg-2 {\n    width: 16.66667%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-4 {\n    width: 33.33333%; }\n  .col-lg-5 {\n    width: 41.66667%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-7 {\n    width: 58.33333%; }\n  .col-lg-8 {\n    width: 66.66667%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-10 {\n    width: 83.33333%; }\n  .col-lg-11 {\n    width: 91.66667%; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-pull-1 {\n    right: 8.33333%; }\n  .col-lg-pull-2 {\n    right: 16.66667%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-4 {\n    right: 33.33333%; }\n  .col-lg-pull-5 {\n    right: 41.66667%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-7 {\n    right: 58.33333%; }\n  .col-lg-pull-8 {\n    right: 66.66667%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-10 {\n    right: 83.33333%; }\n  .col-lg-pull-11 {\n    right: 91.66667%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-push-1 {\n    left: 8.33333%; }\n  .col-lg-push-2 {\n    left: 16.66667%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-4 {\n    left: 33.33333%; }\n  .col-lg-push-5 {\n    left: 41.66667%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-7 {\n    left: 58.33333%; }\n  .col-lg-push-8 {\n    left: 66.66667%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-10 {\n    left: 83.33333%; }\n  .col-lg-push-11 {\n    left: 91.66667%; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-offset-0 {\n    margin-left: 0%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66667%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66667%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66667%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66667%; }\n  .col-lg-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 1200px) {\n  .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n    float: left; }\n  .col-xl-1 {\n    width: 8.33333%; }\n  .col-xl-2 {\n    width: 16.66667%; }\n  .col-xl-3 {\n    width: 25%; }\n  .col-xl-4 {\n    width: 33.33333%; }\n  .col-xl-5 {\n    width: 41.66667%; }\n  .col-xl-6 {\n    width: 50%; }\n  .col-xl-7 {\n    width: 58.33333%; }\n  .col-xl-8 {\n    width: 66.66667%; }\n  .col-xl-9 {\n    width: 75%; }\n  .col-xl-10 {\n    width: 83.33333%; }\n  .col-xl-11 {\n    width: 91.66667%; }\n  .col-xl-12 {\n    width: 100%; }\n  .col-xl-pull-0 {\n    right: auto; }\n  .col-xl-pull-1 {\n    right: 8.33333%; }\n  .col-xl-pull-2 {\n    right: 16.66667%; }\n  .col-xl-pull-3 {\n    right: 25%; }\n  .col-xl-pull-4 {\n    right: 33.33333%; }\n  .col-xl-pull-5 {\n    right: 41.66667%; }\n  .col-xl-pull-6 {\n    right: 50%; }\n  .col-xl-pull-7 {\n    right: 58.33333%; }\n  .col-xl-pull-8 {\n    right: 66.66667%; }\n  .col-xl-pull-9 {\n    right: 75%; }\n  .col-xl-pull-10 {\n    right: 83.33333%; }\n  .col-xl-pull-11 {\n    right: 91.66667%; }\n  .col-xl-pull-12 {\n    right: 100%; }\n  .col-xl-push-0 {\n    left: auto; }\n  .col-xl-push-1 {\n    left: 8.33333%; }\n  .col-xl-push-2 {\n    left: 16.66667%; }\n  .col-xl-push-3 {\n    left: 25%; }\n  .col-xl-push-4 {\n    left: 33.33333%; }\n  .col-xl-push-5 {\n    left: 41.66667%; }\n  .col-xl-push-6 {\n    left: 50%; }\n  .col-xl-push-7 {\n    left: 58.33333%; }\n  .col-xl-push-8 {\n    left: 66.66667%; }\n  .col-xl-push-9 {\n    left: 75%; }\n  .col-xl-push-10 {\n    left: 83.33333%; }\n  .col-xl-push-11 {\n    left: 91.66667%; }\n  .col-xl-push-12 {\n    left: 100%; }\n  .col-xl-offset-0 {\n    margin-left: 0%; }\n  .col-xl-offset-1 {\n    margin-left: 8.33333%; }\n  .col-xl-offset-2 {\n    margin-left: 16.66667%; }\n  .col-xl-offset-3 {\n    margin-left: 25%; }\n  .col-xl-offset-4 {\n    margin-left: 33.33333%; }\n  .col-xl-offset-5 {\n    margin-left: 41.66667%; }\n  .col-xl-offset-6 {\n    margin-left: 50%; }\n  .col-xl-offset-7 {\n    margin-left: 58.33333%; }\n  .col-xl-offset-8 {\n    margin-left: 66.66667%; }\n  .col-xl-offset-9 {\n    margin-left: 75%; }\n  .col-xl-offset-10 {\n    margin-left: 83.33333%; }\n  .col-xl-offset-11 {\n    margin-left: 91.66667%; }\n  .col-xl-offset-12 {\n    margin-left: 100%; } }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 6 */
+/* 4 */
 /***/ function(module, exports) {
 
 	/*
@@ -342,7 +269,7 @@
 	};
 
 /***/ },
-/* 7 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -596,21 +523,1163 @@
 
 
 /***/ },
-/* 8 */
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _introductionHtml = __webpack_require__(7);
+	
+	var _introductionHtml2 = _interopRequireDefault(_introductionHtml);
+	
+	exports['default'] = {
+		data: function data() {
+			return {
+				pkg: this.$parent.pkg
+			};
+		},
+		template: _introductionHtml2['default']
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 7 */
 /***/ function(module, exports) {
 
+	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n\t</div>\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { 'component-name': {{pkg.library}}.componentName }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import componentName from '{{name}}/src/components/component-name'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { 'component-name': componentName }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>";
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _snippetHtml = __webpack_require__(9);
+	
+	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
+	
+	var _iconsHtml = __webpack_require__(10);
+	
+	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
+	
+	var _iconsJson = __webpack_require__(11);
+	
+	var _iconsJson2 = _interopRequireDefault(_iconsJson);
+	
+	__webpack_require__(12);
+	
+	var _utils = __webpack_require__(14);
+	
+	var _srcComponentsIcons = __webpack_require__(16);
+	
+	var _srcComponentsIcons2 = _interopRequireDefault(_srcComponentsIcons);
+	
+	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(20);
+	
+	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
+	
+	exports['default'] = {
+		template: _iconsHtml2['default'],
+		data: function data() {
+			return {
+				meta: _iconsJson2['default'],
+				snippet: _snippetHtml2['default'],
+				controls: {
+					size: 'xxl',
+					sizes: _utils.sizes.concat([{ text: 'xl', value: 'xl' }, { text: 'xxl', value: 'xxl' }]),
+					variant: 'info',
+					variants: _utils.variants.concat([{ text: 'light', value: 'light' }, { text: 'dark', value: 'dark' }])
+				}
+			};
+		},
+		components: {
+			icon: _srcComponentsIcons2['default'],
+			demo: _vuestrapDocsSrcComponentsDemo2['default']
+		}
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<code lang=\"html\">\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-fill&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-fill&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;1&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;1&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;2&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;11&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">&quot;btn btn-md&quot;</span> aria-label=<span class=\"hljs-string\">&quot;settings&quot;</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;cog&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;/button&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">&quot;btn btn-md&quot;</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;cog&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt; settings\r\n&lt;/button&gt;\r\n</code>";
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = "<!-- demo component -->\r\n<demo :meta=\"meta\" :snippet=\"snippet\" path=\"assets/icons.svg\" v-if=\"controls\">\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\" v-if=\"controls\">\r\n\t\t<label>\r\n\t\t\tsize\r\n\t\t\t<select v-model=\"controls.size\">\r\n\t\t\t\t<option v-for=\"option in controls.sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\r\n\t\t<label>\r\n\t\t\tvariant\r\n\t\t\t<select v-model=\"controls.variant\">\r\n\t\t\t\t<option v-for=\"option in controls.variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" v-bind:class=\"{ inverse: controls.variant === 'light' }\">\r\n\r\n\t\t<icon name=\"info\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"2\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"11\"></icon>\r\n\t\t<button class=\"btn btn-md\" aria-label=\"settings\"><icon name=\"cog\" :size=\"'md'\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> </button>\r\n\t\t<button class=\"btn btn-md\"><icon name=\"cog\" :size=\"'md'\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> settings</button>\r\n\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n</demo>";
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"name": "icons",
+		"title": "Icons",
+		"description": "SVG sprite consists of 223 icons from Iconic, plus two custom ones: circle-fill and circle-outline.",
+		"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs.</a>",
+		"dependencies": [
+			"vuestrap/core/icons"
+		],
+		"category": "components",
+		"browserSupport": [
+			"IE9+",
+			"Android 4.3"
+		],
+		"options": [
+			{
+				"name": "name",
+				"type": "String",
+				"default": "''",
+				"required": false,
+				"description": "A name of the icon. For more icons please refer to <a href='https://useiconic.com/open/'>https://useiconic.com/open/</a>"
+			},
+			{
+				"name": "background",
+				"type": "String",
+				"default": "''",
+				"required": false,
+				"description": "A name of the background icon. It will be stacked behind the main icon. It supports circle-outline and circle-fill background icons."
+			},
+			{
+				"name": "align",
+				"type": "String",
+				"values": [
+					"left",
+					"right"
+				],
+				"default": "''",
+				"required": false,
+				"description": "Adds extra padding on the left/right of the icon."
+			},
+			{
+				"name": "size",
+				"type": "String",
+				"values": [
+					"sm",
+					"md",
+					"lg",
+					"xl",
+					"xxl"
+				],
+				"default": "md",
+				"description": "Size of the icon. 'sm' starts at 1.0em ('sm') and increments by 0.5em for next sizes."
+			},
+			{
+				"name": "text",
+				"type": "String",
+				"default": "",
+				"description": "To place custom text above the icon. Works well with background icon `circle-fill` and supports up to two characters."
+			},
+			{
+				"name": "variant",
+				"type": "String",
+				"values": [
+					"light",
+					"dark",
+					"primary",
+					"success",
+					"info",
+					"warning",
+					"danger"
+				],
+				"default": "light",
+				"description": "Button color context."
+			},
+			{
+				"name": "path",
+				"type": "String",
+				"default": "",
+				"description": "It allows you to specify a path to svg sprite. Default path is set to <code>/node_modules/vuestrap-icons/assets/sprite.svg</code>"
+			}
+		]
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(13);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss", function() {
+				var newContent = require("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Routes helper
+	 */
 	'use strict';
 	
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
-	var variants = [{ text: 'default', value: 'default' }, { text: 'primary', value: 'primary' }, { text: 'success', value: 'success' }, { text: 'info', value: 'info' }, { text: 'warning', value: 'warning' }, { text: 'danger', value: 'danger' }];
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	var _director = __webpack_require__(15);
+	
+	var _director2 = _interopRequireDefault(_director);
+	
+	var router = new _director2['default'].Router();
+	exports.router = router;
+	var handleRoute = function handleRoute(route, cb) {
+	  // listen to the route changes and set currentView object for the current route
+	  var routeUrl = '/' + route.name;
+	  router.on(route.route, function () {
+	    window.scrollTo(0, 0);
+	    cb();
+	  });
+	};
+	
+	exports.handleRoute = handleRoute;
+	/**
+	 * Some common stuff used in demo pages
+	 */
+	var variants = [{
+	  text: 'default',
+	  value: 'default'
+	}, {
+	  text: 'primary',
+	  value: 'primary'
+	}, {
+	  text: 'success',
+	  value: 'success'
+	}, {
+	  text: 'info',
+	  value: 'info'
+	}, {
+	  text: 'warning',
+	  value: 'warning'
+	}, {
+	  text: 'danger',
+	  value: 'danger'
+	}];
 	exports.variants = variants;
-	var sizes = [{ text: 'sm', value: 'sm' }, { text: 'md', value: 'md' }, { text: 'lg', value: 'lg' }];
+	var sizes = [{
+	  text: 'sm',
+	  value: 'sm'
+	}, {
+	  text: 'md',
+	  value: 'md'
+	}, {
+	  text: 'lg',
+	  value: 'lg'
+	}];
 	exports.sizes = sizes;
 
 /***/ },
-/* 9 */
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	
+	//
+	// Generated on Tue Dec 16 2014 12:13:47 GMT+0100 (CET) by Charlie Robbins, Paolo Fragomeni & the Contributors (Using Codesurgeon).
+	// Version 1.2.6
+	'use strict';
+	
+	(function (exports) {
+	
+	  /*
+	   * browser.js: Browser specific functionality for director.
+	   *
+	   * (C) 2011, Charlie Robbins, Paolo Fragomeni, & the Contributors.
+	   * MIT LICENSE
+	   *
+	   */
+	
+	  var dloc = document.location;
+	
+	  function dlocHashEmpty() {
+	    // Non-IE browsers return '' when the address bar shows '#'; Director's logic
+	    // assumes both mean empty.
+	    return dloc.hash === '' || dloc.hash === '#';
+	  }
+	
+	  var listener = {
+	    mode: 'modern',
+	    hash: dloc.hash,
+	    history: false,
+	
+	    check: function check() {
+	      var h = dloc.hash;
+	      if (h != this.hash) {
+	        this.hash = h;
+	        this.onHashChanged();
+	      }
+	    },
+	
+	    fire: function fire() {
+	      if (this.mode === 'modern') {
+	        this.history === true ? window.onpopstate() : window.onhashchange();
+	      } else {
+	        this.onHashChanged();
+	      }
+	    },
+	
+	    init: function init(fn, history) {
+	      var self = this;
+	      this.history = history;
+	
+	      if (!Router.listeners) {
+	        Router.listeners = [];
+	      }
+	
+	      function onchange(onChangeEvent) {
+	        for (var i = 0, l = Router.listeners.length; i < l; i++) {
+	          Router.listeners[i](onChangeEvent);
+	        }
+	      }
+	
+	      //note IE8 is being counted as 'modern' because it has the hashchange event
+	      if ('onhashchange' in window && (document.documentMode === undefined || document.documentMode > 7)) {
+	        // At least for now HTML5 history is available for 'modern' browsers only
+	        if (this.history === true) {
+	          // There is an old bug in Chrome that causes onpopstate to fire even
+	          // upon initial page load. Since the handler is run manually in init(),
+	          // this would cause Chrome to run it twise. Currently the only
+	          // workaround seems to be to set the handler after the initial page load
+	          // http://code.google.com/p/chromium/issues/detail?id=63040
+	          setTimeout(function () {
+	            window.onpopstate = onchange;
+	          }, 500);
+	        } else {
+	          window.onhashchange = onchange;
+	        }
+	        this.mode = 'modern';
+	      } else {
+	        //
+	        // IE support, based on a concept by Erik Arvidson ...
+	        //
+	        var frame = document.createElement('iframe');
+	        frame.id = 'state-frame';
+	        frame.style.display = 'none';
+	        document.body.appendChild(frame);
+	        this.writeFrame('');
+	
+	        if ('onpropertychange' in document && 'attachEvent' in document) {
+	          document.attachEvent('onpropertychange', function () {
+	            if (event.propertyName === 'location') {
+	              self.check();
+	            }
+	          });
+	        }
+	
+	        window.setInterval(function () {
+	          self.check();
+	        }, 50);
+	
+	        this.onHashChanged = onchange;
+	        this.mode = 'legacy';
+	      }
+	
+	      Router.listeners.push(fn);
+	
+	      return this.mode;
+	    },
+	
+	    destroy: function destroy(fn) {
+	      if (!Router || !Router.listeners) {
+	        return;
+	      }
+	
+	      var listeners = Router.listeners;
+	
+	      for (var i = listeners.length - 1; i >= 0; i--) {
+	        if (listeners[i] === fn) {
+	          listeners.splice(i, 1);
+	        }
+	      }
+	    },
+	
+	    setHash: function setHash(s) {
+	      // Mozilla always adds an entry to the history
+	      if (this.mode === 'legacy') {
+	        this.writeFrame(s);
+	      }
+	
+	      if (this.history === true) {
+	        window.history.pushState({}, document.title, s);
+	        // Fire an onpopstate event manually since pushing does not obviously
+	        // trigger the pop event.
+	        this.fire();
+	      } else {
+	        dloc.hash = s[0] === '/' ? s : '/' + s;
+	      }
+	      return this;
+	    },
+	
+	    writeFrame: function writeFrame(s) {
+	      // IE support...
+	      var f = document.getElementById('state-frame');
+	      var d = f.contentDocument || f.contentWindow.document;
+	      d.open();
+	      d.write("<script>_hash = '" + s + "'; onload = parent.listener.syncHash;<script>");
+	      d.close();
+	    },
+	
+	    syncHash: function syncHash() {
+	      // IE support...
+	      var s = this._hash;
+	      if (s != dloc.hash) {
+	        dloc.hash = s;
+	      }
+	      return this;
+	    },
+	
+	    onHashChanged: function onHashChanged() {}
+	  };
+	
+	  var Router = exports.Router = function (routes) {
+	    if (!(this instanceof Router)) return new Router(routes);
+	
+	    this.params = {};
+	    this.routes = {};
+	    this.methods = ['on', 'once', 'after', 'before'];
+	    this.scope = [];
+	    this._methods = {};
+	
+	    this._insert = this.insert;
+	    this.insert = this.insertEx;
+	
+	    this.historySupport = (window.history != null ? window.history.pushState : null) != null;
+	
+	    this.configure();
+	    this.mount(routes || {});
+	  };
+	
+	  Router.prototype.init = function (r) {
+	    var self = this,
+	        routeTo;
+	    this.handler = function (onChangeEvent) {
+	      var newURL = onChangeEvent && onChangeEvent.newURL || window.location.hash;
+	      var url = self.history === true ? self.getPath() : newURL.replace(/.*#/, '');
+	      self.dispatch('on', url.charAt(0) === '/' ? url : '/' + url);
+	    };
+	
+	    listener.init(this.handler, this.history);
+	
+	    if (this.history === false) {
+	      if (dlocHashEmpty() && r) {
+	        dloc.hash = r;
+	      } else if (!dlocHashEmpty()) {
+	        self.dispatch('on', '/' + dloc.hash.replace(/^(#\/|#|\/)/, ''));
+	      }
+	    } else {
+	      if (this.convert_hash_in_init) {
+	        // Use hash as route
+	        routeTo = dlocHashEmpty() && r ? r : !dlocHashEmpty() ? dloc.hash.replace(/^#/, '') : null;
+	        if (routeTo) {
+	          window.history.replaceState({}, document.title, routeTo);
+	        }
+	      } else {
+	        // Use canonical url
+	        routeTo = this.getPath();
+	      }
+	
+	      // Router has been initialized, but due to the chrome bug it will not
+	      // yet actually route HTML5 history state changes. Thus, decide if should route.
+	      if (routeTo || this.run_in_init === true) {
+	        this.handler();
+	      }
+	    }
+	
+	    return this;
+	  };
+	
+	  Router.prototype.explode = function () {
+	    var v = this.history === true ? this.getPath() : dloc.hash;
+	    if (v.charAt(1) === '/') {
+	      v = v.slice(1);
+	    }
+	    return v.slice(1, v.length).split("/");
+	  };
+	
+	  Router.prototype.setRoute = function (i, v, val) {
+	    var url = this.explode();
+	
+	    if (typeof i === 'number' && typeof v === 'string') {
+	      url[i] = v;
+	    } else if (typeof val === 'string') {
+	      url.splice(i, v, s);
+	    } else {
+	      url = [i];
+	    }
+	
+	    listener.setHash(url.join('/'));
+	    return url;
+	  };
+	
+	  //
+	  // ### function insertEx(method, path, route, parent)
+	  // #### @method {string} Method to insert the specific `route`.
+	  // #### @path {Array} Parsed path to insert the `route` at.
+	  // #### @route {Array|function} Route handlers to insert.
+	  // #### @parent {Object} **Optional** Parent "routes" to insert into.
+	  // insert a callback that will only occur once per the matched route.
+	  //
+	  Router.prototype.insertEx = function (method, path, route, parent) {
+	    if (method === "once") {
+	      method = "on";
+	      route = (function (route) {
+	        var once = false;
+	        return function () {
+	          if (once) return;
+	          once = true;
+	          return route.apply(this, arguments);
+	        };
+	      })(route);
+	    }
+	    return this._insert(method, path, route, parent);
+	  };
+	
+	  Router.prototype.getRoute = function (v) {
+	    var ret = v;
+	
+	    if (typeof v === "number") {
+	      ret = this.explode()[v];
+	    } else if (typeof v === "string") {
+	      var h = this.explode();
+	      ret = h.indexOf(v);
+	    } else {
+	      ret = this.explode();
+	    }
+	
+	    return ret;
+	  };
+	
+	  Router.prototype.destroy = function () {
+	    listener.destroy(this.handler);
+	    return this;
+	  };
+	
+	  Router.prototype.getPath = function () {
+	    var path = window.location.pathname;
+	    if (path.substr(0, 1) !== '/') {
+	      path = '/' + path;
+	    }
+	    return path;
+	  };
+	  function _every(arr, iterator) {
+	    for (var i = 0; i < arr.length; i += 1) {
+	      if (iterator(arr[i], i, arr) === false) {
+	        return;
+	      }
+	    }
+	  }
+	
+	  function _flatten(arr) {
+	    var flat = [];
+	    for (var i = 0, n = arr.length; i < n; i++) {
+	      flat = flat.concat(arr[i]);
+	    }
+	    return flat;
+	  }
+	
+	  function _asyncEverySeries(arr, iterator, callback) {
+	    if (!arr.length) {
+	      return callback();
+	    }
+	    var completed = 0;
+	    (function iterate() {
+	      iterator(arr[completed], function (err) {
+	        if (err || err === false) {
+	          callback(err);
+	          callback = function () {};
+	        } else {
+	          completed += 1;
+	          if (completed === arr.length) {
+	            callback();
+	          } else {
+	            iterate();
+	          }
+	        }
+	      });
+	    })();
+	  }
+	
+	  function paramifyString(str, params, mod) {
+	    mod = str;
+	    for (var param in params) {
+	      if (params.hasOwnProperty(param)) {
+	        mod = params[param](str);
+	        if (mod !== str) {
+	          break;
+	        }
+	      }
+	    }
+	    return mod === str ? "([._a-zA-Z0-9-%()]+)" : mod;
+	  }
+	
+	  function regifyString(str, params) {
+	    var matches,
+	        last = 0,
+	        out = "";
+	    while (matches = str.substr(last).match(/[^\w\d\- %@&]*\*[^\w\d\- %@&]*/)) {
+	      last = matches.index + matches[0].length;
+	      matches[0] = matches[0].replace(/^\*/, "([_.()!\\ %@&a-zA-Z0-9-]+)");
+	      out += str.substr(0, matches.index) + matches[0];
+	    }
+	    str = out += str.substr(last);
+	    var captures = str.match(/:([^\/]+)/ig),
+	        capture,
+	        length;
+	    if (captures) {
+	      length = captures.length;
+	      for (var i = 0; i < length; i++) {
+	        capture = captures[i];
+	        if (capture.slice(0, 2) === "::") {
+	          str = capture.slice(1);
+	        } else {
+	          str = str.replace(capture, paramifyString(capture, params));
+	        }
+	      }
+	    }
+	    return str;
+	  }
+	
+	  function terminator(routes, delimiter, start, stop) {
+	    var last = 0,
+	        left = 0,
+	        right = 0,
+	        start = (start || "(").toString(),
+	        stop = (stop || ")").toString(),
+	        i;
+	    for (i = 0; i < routes.length; i++) {
+	      var chunk = routes[i];
+	      if (chunk.indexOf(start, last) > chunk.indexOf(stop, last) || ~chunk.indexOf(start, last) && ! ~chunk.indexOf(stop, last) || ! ~chunk.indexOf(start, last) && ~chunk.indexOf(stop, last)) {
+	        left = chunk.indexOf(start, last);
+	        right = chunk.indexOf(stop, last);
+	        if (~left && ! ~right || ! ~left && ~right) {
+	          var tmp = routes.slice(0, (i || 1) + 1).join(delimiter);
+	          routes = [tmp].concat(routes.slice((i || 1) + 1));
+	        }
+	        last = (right > left ? right : left) + 1;
+	        i = 0;
+	      } else {
+	        last = 0;
+	      }
+	    }
+	    return routes;
+	  }
+	
+	  var QUERY_SEPARATOR = /\?.*/;
+	
+	  Router.prototype.configure = function (options) {
+	    options = options || {};
+	    for (var i = 0; i < this.methods.length; i++) {
+	      this._methods[this.methods[i]] = true;
+	    }
+	    this.recurse = options.recurse || this.recurse || false;
+	    this.async = options.async || false;
+	    this.delimiter = options.delimiter || "/";
+	    this.strict = typeof options.strict === "undefined" ? true : options.strict;
+	    this.notfound = options.notfound;
+	    this.resource = options.resource;
+	    this.history = options.html5history && this.historySupport || false;
+	    this.run_in_init = this.history === true && options.run_handler_in_init !== false;
+	    this.convert_hash_in_init = this.history === true && options.convert_hash_in_init !== false;
+	    this.every = {
+	      after: options.after || null,
+	      before: options.before || null,
+	      on: options.on || null
+	    };
+	    return this;
+	  };
+	
+	  Router.prototype.param = function (token, matcher) {
+	    if (token[0] !== ":") {
+	      token = ":" + token;
+	    }
+	    var compiled = new RegExp(token, "g");
+	    this.params[token] = function (str) {
+	      return str.replace(compiled, matcher.source || matcher);
+	    };
+	    return this;
+	  };
+	
+	  Router.prototype.on = Router.prototype.route = function (method, path, route) {
+	    var self = this;
+	    if (!route && typeof path == "function") {
+	      route = path;
+	      path = method;
+	      method = "on";
+	    }
+	    if (Array.isArray(path)) {
+	      return path.forEach(function (p) {
+	        self.on(method, p, route);
+	      });
+	    }
+	    if (path.source) {
+	      path = path.source.replace(/\\\//ig, "/");
+	    }
+	    if (Array.isArray(method)) {
+	      return method.forEach(function (m) {
+	        self.on(m.toLowerCase(), path, route);
+	      });
+	    }
+	    path = path.split(new RegExp(this.delimiter));
+	    path = terminator(path, this.delimiter);
+	    this.insert(method, this.scope.concat(path), route);
+	  };
+	
+	  Router.prototype.path = function (path, routesFn) {
+	    var self = this,
+	        length = this.scope.length;
+	    if (path.source) {
+	      path = path.source.replace(/\\\//ig, "/");
+	    }
+	    path = path.split(new RegExp(this.delimiter));
+	    path = terminator(path, this.delimiter);
+	    this.scope = this.scope.concat(path);
+	    routesFn.call(this, this);
+	    this.scope.splice(length, path.length);
+	  };
+	
+	  Router.prototype.dispatch = function (method, path, callback) {
+	    var self = this,
+	        fns = this.traverse(method, path.replace(QUERY_SEPARATOR, ""), this.routes, ""),
+	        invoked = this._invoked,
+	        after;
+	    this._invoked = true;
+	    if (!fns || fns.length === 0) {
+	      this.last = [];
+	      if (typeof this.notfound === "function") {
+	        this.invoke([this.notfound], {
+	          method: method,
+	          path: path
+	        }, callback);
+	      }
+	      return false;
+	    }
+	    if (this.recurse === "forward") {
+	      fns = fns.reverse();
+	    }
+	    function updateAndInvoke() {
+	      self.last = fns.after;
+	      self.invoke(self.runlist(fns), self, callback);
+	    }
+	    after = this.every && this.every.after ? [this.every.after].concat(this.last) : [this.last];
+	    if (after && after.length > 0 && invoked) {
+	      if (this.async) {
+	        this.invoke(after, this, updateAndInvoke);
+	      } else {
+	        this.invoke(after, this);
+	        updateAndInvoke();
+	      }
+	      return true;
+	    }
+	    updateAndInvoke();
+	    return true;
+	  };
+	
+	  Router.prototype.invoke = function (fns, thisArg, callback) {
+	    var self = this;
+	    var apply;
+	    if (this.async) {
+	      apply = function (fn, next) {
+	        if (Array.isArray(fn)) {
+	          return _asyncEverySeries(fn, apply, next);
+	        } else if (typeof fn == "function") {
+	          fn.apply(thisArg, (fns.captures || []).concat(next));
+	        }
+	      };
+	      _asyncEverySeries(fns, apply, function () {
+	        if (callback) {
+	          callback.apply(thisArg, arguments);
+	        }
+	      });
+	    } else {
+	      apply = function (fn) {
+	        if (Array.isArray(fn)) {
+	          return _every(fn, apply);
+	        } else if (typeof fn === "function") {
+	          return fn.apply(thisArg, fns.captures || []);
+	        } else if (typeof fn === "string" && self.resource) {
+	          self.resource[fn].apply(thisArg, fns.captures || []);
+	        }
+	      };
+	      _every(fns, apply);
+	    }
+	  };
+	
+	  Router.prototype.traverse = function (method, path, routes, regexp, filter) {
+	    var fns = [],
+	        current,
+	        exact,
+	        match,
+	        next,
+	        that;
+	    function filterRoutes(routes) {
+	      if (!filter) {
+	        return routes;
+	      }
+	      function deepCopy(source) {
+	        var result = [];
+	        for (var i = 0; i < source.length; i++) {
+	          result[i] = Array.isArray(source[i]) ? deepCopy(source[i]) : source[i];
+	        }
+	        return result;
+	      }
+	      function applyFilter(fns) {
+	        for (var i = fns.length - 1; i >= 0; i--) {
+	          if (Array.isArray(fns[i])) {
+	            applyFilter(fns[i]);
+	            if (fns[i].length === 0) {
+	              fns.splice(i, 1);
+	            }
+	          } else {
+	            if (!filter(fns[i])) {
+	              fns.splice(i, 1);
+	            }
+	          }
+	        }
+	      }
+	      var newRoutes = deepCopy(routes);
+	      newRoutes.matched = routes.matched;
+	      newRoutes.captures = routes.captures;
+	      newRoutes.after = routes.after.filter(filter);
+	      applyFilter(newRoutes);
+	      return newRoutes;
+	    }
+	    if (path === this.delimiter && routes[method]) {
+	      next = [[routes.before, routes[method]].filter(Boolean)];
+	      next.after = [routes.after].filter(Boolean);
+	      next.matched = true;
+	      next.captures = [];
+	      return filterRoutes(next);
+	    }
+	    for (var r in routes) {
+	      if (routes.hasOwnProperty(r) && (!this._methods[r] || this._methods[r] && typeof routes[r] === "object" && !Array.isArray(routes[r]))) {
+	        current = exact = regexp + this.delimiter + r;
+	        if (!this.strict) {
+	          exact += "[" + this.delimiter + "]?";
+	        }
+	        match = path.match(new RegExp("^" + exact));
+	        if (!match) {
+	          continue;
+	        }
+	        if (match[0] && match[0] == path && routes[r][method]) {
+	          next = [[routes[r].before, routes[r][method]].filter(Boolean)];
+	          next.after = [routes[r].after].filter(Boolean);
+	          next.matched = true;
+	          next.captures = match.slice(1);
+	          if (this.recurse && routes === this.routes) {
+	            next.push([routes.before, routes.on].filter(Boolean));
+	            next.after = next.after.concat([routes.after].filter(Boolean));
+	          }
+	          return filterRoutes(next);
+	        }
+	        next = this.traverse(method, path, routes[r], current);
+	        if (next.matched) {
+	          if (next.length > 0) {
+	            fns = fns.concat(next);
+	          }
+	          if (this.recurse) {
+	            fns.push([routes[r].before, routes[r].on].filter(Boolean));
+	            next.after = next.after.concat([routes[r].after].filter(Boolean));
+	            if (routes === this.routes) {
+	              fns.push([routes["before"], routes["on"]].filter(Boolean));
+	              next.after = next.after.concat([routes["after"]].filter(Boolean));
+	            }
+	          }
+	          fns.matched = true;
+	          fns.captures = next.captures;
+	          fns.after = next.after;
+	          return filterRoutes(fns);
+	        }
+	      }
+	    }
+	    return false;
+	  };
+	
+	  Router.prototype.insert = function (method, path, route, parent) {
+	    var methodType, parentType, isArray, nested, part;
+	    path = path.filter(function (p) {
+	      return p && p.length > 0;
+	    });
+	    parent = parent || this.routes;
+	    part = path.shift();
+	    if (/\:|\*/.test(part) && !/\\d|\\w/.test(part)) {
+	      part = regifyString(part, this.params);
+	    }
+	    if (path.length > 0) {
+	      parent[part] = parent[part] || {};
+	      return this.insert(method, path, route, parent[part]);
+	    }
+	    if (!part && !path.length && parent === this.routes) {
+	      methodType = typeof parent[method];
+	      switch (methodType) {
+	        case "function":
+	          parent[method] = [parent[method], route];
+	          return;
+	        case "object":
+	          parent[method].push(route);
+	          return;
+	        case "undefined":
+	          parent[method] = route;
+	          return;
+	      }
+	      return;
+	    }
+	    parentType = typeof parent[part];
+	    isArray = Array.isArray(parent[part]);
+	    if (parent[part] && !isArray && parentType == "object") {
+	      methodType = typeof parent[part][method];
+	      switch (methodType) {
+	        case "function":
+	          parent[part][method] = [parent[part][method], route];
+	          return;
+	        case "object":
+	          parent[part][method].push(route);
+	          return;
+	        case "undefined":
+	          parent[part][method] = route;
+	          return;
+	      }
+	    } else if (parentType == "undefined") {
+	      nested = {};
+	      nested[method] = route;
+	      parent[part] = nested;
+	      return;
+	    }
+	    throw new Error("Invalid route context: " + parentType);
+	  };
+	
+	  Router.prototype.extend = function (methods) {
+	    var self = this,
+	        len = methods.length,
+	        i;
+	    function extend(method) {
+	      self._methods[method] = true;
+	      self[method] = function () {
+	        var extra = arguments.length === 1 ? [method, ""] : [method];
+	        self.on.apply(self, extra.concat(Array.prototype.slice.call(arguments)));
+	      };
+	    }
+	    for (i = 0; i < len; i++) {
+	      extend(methods[i]);
+	    }
+	  };
+	
+	  Router.prototype.runlist = function (fns) {
+	    var runlist = this.every && this.every.before ? [this.every.before].concat(_flatten(fns)) : _flatten(fns);
+	    if (this.every && this.every.on) {
+	      runlist.push(this.every.on);
+	    }
+	    runlist.captures = fns.captures;
+	    runlist.source = fns.source;
+	    return runlist;
+	  };
+	
+	  Router.prototype.mount = function (routes, path) {
+	    if (!routes || typeof routes !== "object" || Array.isArray(routes)) {
+	      return;
+	    }
+	    var self = this;
+	    path = path || [];
+	    if (!Array.isArray(path)) {
+	      path = path.split(self.delimiter);
+	    }
+	    function insertOrMount(route, local) {
+	      var rename = route,
+	          parts = route.split(self.delimiter),
+	          routeType = typeof routes[route],
+	          isRoute = parts[0] === "" || !self._methods[parts[0]],
+	          event = isRoute ? "on" : rename;
+	      if (isRoute) {
+	        rename = rename.slice((rename.match(new RegExp("^" + self.delimiter)) || [""])[0].length);
+	        parts.shift();
+	      }
+	      if (isRoute && routeType === "object" && !Array.isArray(routes[route])) {
+	        local = local.concat(parts);
+	        self.mount(routes[route], local);
+	        return;
+	      }
+	      if (isRoute) {
+	        local = local.concat(rename.split(self.delimiter));
+	        local = terminator(local, self.delimiter);
+	      }
+	      self.insert(event, local, routes[route]);
+	    }
+	    for (var route in routes) {
+	      if (routes.hasOwnProperty(route)) {
+	        insertOrMount(route, path.slice(0));
+	      }
+	    }
+	  };
+	})( true ? exports : window);
+	//
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// import dependencies
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	__webpack_require__(17);
+	
+	var _iconsHtml = __webpack_require__(19);
+	
+	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
+	
+	// export component object
+	exports['default'] = {
+	  template: _iconsHtml2['default'],
+	  replace: true,
+	  computed: {
+	    iconsSize: function iconsSize() {
+	      return !this.size ? 'icons-sm' : 'icons-' + this.size;
+	    },
+	    iconsAlign: function iconsAlign() {
+	      return !this.align ? '' : 'icons-' + this.align;
+	    },
+	    iconsVariant: function iconsVariant() {
+	      return !this.variant ? '' : 'icons-' + this.variant;
+	    },
+	    iconsBackground: function iconsBackground() {
+	      var bg = this.background.split('-');
+	      bg = bg[1] ? bg[1] : 'fill';
+	      return !this.background ? '' : 'icons-bg-' + bg;
+	    }
+	  },
+	  props: {
+	    name: {
+	      type: String
+	    },
+	    background: {
+	      type: String,
+	      'default': ''
+	    },
+	    align: {
+	      type: String,
+	      'default': ''
+	    },
+	    size: {
+	      type: String,
+	      'default': 'sm'
+	    },
+	    text: {
+	      type: String,
+	      'default': ''
+	    },
+	    variant: {
+	      type: String,
+	      'default': 'standard'
+	    },
+	    path: {
+	      type: String,
+	      'default': function _default() {
+	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
+	      }
+	    }
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(18);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_icons.scss", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_icons.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".vuestrap-icons {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative; }\n  .vuestrap-icons .icon {\n    width: 100%;\n    height: 100%;\n    top: 0%;\n    left: 0%;\n    position: absolute;\n    z-index: 2; }\n  .vuestrap-icons .icon-background {\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1; }\n  .vuestrap-icons.icons-bg-fill .icon, .vuestrap-icons.icons-bg-outline .icon {\n    width: 50%;\n    height: 50%;\n    top: 25%;\n    left: 25%; }\n  .vuestrap-icons .text {\n    position: relative;\n    color: #fff;\n    z-index: 3;\n    font-size: 70%;\n    width: 100%;\n    height: 100%;\n    display: table;\n    text-align: center; }\n    .vuestrap-icons .text > span {\n      display: table-cell;\n      vertical-align: middle; }\n  .vuestrap-icons.icons-right {\n    margin-left: 0.2em;\n    margin-right: 0; }\n  .vuestrap-icons.icons-left {\n    margin-left: 0;\n    margin-right: 0.2em; }\n\n.vuestrap-icons.icons-sm {\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 1rem;\n  height: 1rem; }\n\n.vuestrap-icons.icons-md {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem; }\n\n.vuestrap-icons.icons-lg {\n  font-size: 2rem;\n  line-height: 2rem;\n  width: 2rem;\n  height: 2rem; }\n\n.vuestrap-icons.icons-xl {\n  font-size: 3rem;\n  line-height: 3rem;\n  width: 3rem;\n  height: 3rem; }\n\n.vuestrap-icons.icons-xxl {\n  font-size: 3.5rem;\n  line-height: 3.5rem;\n  width: 3.5rem;\n  height: 3.5rem; }\n\n.vuestrap-icons .icon {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-bg-fill .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-bg-outline .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-outline .text {\n  color: #818a91; }\n\n.vuestrap-icons.icons-primary .icon {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .text {\n  color: #563d7c; }\n\n.vuestrap-icons.icons-info .icon {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .text {\n  color: #5bc0de; }\n\n.vuestrap-icons.icons-success .icon {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .text {\n  color: #42b983; }\n\n.vuestrap-icons.icons-warning .icon {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .text {\n  color: #f0ad4e; }\n\n.vuestrap-icons.icons-danger .icon {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .text {\n  color: #d9534f; }\n\n.vuestrap-icons.icons-dark .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .text {\n  color: #fff; }\n\n.btn.disabled svg {\n  opacity: 0.5; }\n\n.btn:hover svg {\n  fill: #fff; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<svg class=\"icon\" v-if=\"name\">\r\n\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t</svg>\r\n\t<svg class=\"icon-background\" v-if=\"background\" >\r\n\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t</svg>\r\n\t<span class=\"text\" v-if=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -622,15 +1691,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(10);
+	__webpack_require__(21);
 	
-	var _demoHtml = __webpack_require__(12);
+	var _demoHtml = __webpack_require__(23);
 	
 	var _demoHtml2 = _interopRequireDefault(_demoHtml);
 	
-	__webpack_require__(13);
+	__webpack_require__(24);
 	
-	__webpack_require__(16);
+	__webpack_require__(27);
 	
 	//import icons from 'vuestrap-icons'
 	
@@ -639,9 +1708,14 @@
 	    template: _demoHtml2['default'],
 	    replace: true,
 	    props: {
-	        component: {
+	        meta: {
 	            type: Object,
 	            'default': {},
+	            required: true
+	        },
+	        snippet: {
+	            type: String,
+	            'default': '',
 	            required: true
 	        }
 	    },
@@ -652,16 +1726,16 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(11);
+	var content = __webpack_require__(22);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -678,45 +1752,45 @@
 	}
 
 /***/ },
-/* 11 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".vuestrap-docs-demo {\n  margin-bottom: 4rem; }\n  .vuestrap-docs-demo .code-demo {\n    position: relative;\n    margin-left: 0;\n    margin-right: 0;\n    margin-bottom: 2rem;\n    padding: 1rem;\n    padding-bottom: 0;\n    border: solid #f7f7f9;\n    border-width: .2rem; }\n    .vuestrap-docs-demo .code-demo > .inverse {\n      background-color: #898989;\n      padding: 0.2em; }\n  .vuestrap-docs-demo .highlight {\n    padding: 1rem;\n    margin: 1rem -1rem;\n    background-color: #f7f7f9;\n    margin-bottom: 0; }\n    .vuestrap-docs-demo .highlight pre {\n      margin-bottom: 0; }\n  .vuestrap-docs-demo .options > table code {\n    display: inline-block;\n    margin-right: 2px;\n    margin-bottom: 2px; }\n  .vuestrap-docs-demo .options > table td {\n    width: 10%; }\n  .vuestrap-docs-demo .options > table td:nth-child(1) {\n    min-width: 150px;\n    color: #563d7c; }\n  .vuestrap-docs-demo .options > table td:nth-child(5) {\n    width: 50%; }\n  .vuestrap-docs-demo [slot=\"controls\"] {\n    background-color: #f7f7f9;\n    padding: 1rem; }\n  .vuestrap-docs-demo [slot=\"controls\"] label {\n    margin-bottom: 0;\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo label.btn {\n    margin-bottom: 0; }\n  .vuestrap-docs-demo .label {\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo > .label {\n    background-color: #563d7c; }\n  .vuestrap-docs-demo > .alert {\n    border-right-color: #e6e6ec;\n    border-top-color: #e6e6ec;\n    border-bottom-color: #e6e6ec;\n    border-left-width: 5px;\n    background-color: transparent; }\n    .vuestrap-docs-demo > .alert .icons {\n      vertical-align: text-bottom; }\n  .vuestrap-docs-demo .tab-content .tab-pane {\n    padding: 1em 0; }\n", ""]);
+	exports.push([module.id, ".vuestrap-docs-demo {\n  margin-bottom: 4rem; }\n  .vuestrap-docs-demo .code-demo {\n    position: relative;\n    margin-left: 0;\n    margin-right: 0;\n    margin-bottom: 2rem;\n    padding: 1rem;\n    padding-bottom: 0;\n    border: solid #f7f7f9;\n    border-width: .2rem; }\n    .vuestrap-docs-demo .code-demo > .inverse {\n      background-color: #898989;\n      padding: 0.2em; }\n  .vuestrap-docs-demo .highlight {\n    padding: 1rem;\n    padding-top: 0;\n    margin: 1rem -1rem;\n    background-color: #f7f7f9;\n    margin-bottom: 0; }\n    .vuestrap-docs-demo .highlight pre {\n      margin-bottom: 0; }\n  .vuestrap-docs-demo .options > table code {\n    display: inline-block;\n    margin-right: 2px;\n    margin-bottom: 2px; }\n  .vuestrap-docs-demo .options > table td {\n    width: 10%; }\n  .vuestrap-docs-demo .options > table td:nth-child(1) {\n    min-width: 150px;\n    color: #563d7c; }\n  .vuestrap-docs-demo .options > table td:nth-child(5) {\n    width: 50%; }\n  .vuestrap-docs-demo [slot=\"controls\"] {\n    background-color: #f7f7f9;\n    padding: 1rem; }\n  .vuestrap-docs-demo [slot=\"controls\"] label {\n    margin-bottom: 0;\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo label.btn {\n    margin-bottom: 0; }\n  .vuestrap-docs-demo .label {\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo > .label {\n    background-color: #563d7c; }\n  .vuestrap-docs-demo > .alert {\n    border-right-color: #e6e6ec;\n    border-top-color: #e6e6ec;\n    border-bottom-color: #e6e6ec;\n    border-left-width: 5px;\n    background-color: transparent; }\n    .vuestrap-docs-demo > .alert .icons {\n      vertical-align: text-bottom; }\n  .vuestrap-docs-demo .tab-content .tab-pane {\n    padding: 1em 0; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 12 */
+/* 23 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"vuestrap-docs-demo\" id=\"{{component.meta.name}}\">\r\n\r\n\t<!-- Meta title -->\r\n\t<h2>{{component.meta.title}}</h2>\r\n\t<p v-html=\"component.meta.description\"></p>\r\n\r\n\t<div class=\"m-b\"></div>\r\n\t\r\n\t<!-- component notes -->\r\n\t<div class=\"alert alert-info\" role=\"alert\" v-if=\"component.meta.note\">\r\n  \t<icon background=\"circle-outline\" size=\"sm\" variant=\"info\" text=\"i\"></icon> <span v-html=\"component.meta.note\"></span>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Component manipulators -->\r\n\t<slot name=\"controls\"></slot>\r\n\r\n\t<!-- Output & Code sample -->\r\n\t<div class=\"code-demo\">\r\n\t\t\r\n\t\t<!-- a real component rendered here -->\r\n\t\t<slot class=\"markup\" name=\"markup\"></slot>\r\n\t\t\r\n\t\t<!-- snippet -->\r\n\t\t<div class=\"highlight\">\r\n\t\t\t<pre><code v-html=\"component.snippet\"></code></pre>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Options -->\r\n\t<div class=\"options\" v-if=\"component.meta.options.length\">\r\n\t\t<h3>Options</h3>\r\n\t\t<table class='table table-responsive'>\r\n\t\t\t<tr>\r\n\t\t\t\t<th>Name</th>\r\n\t\t\t\t<th>Type</th>\r\n\t\t\t\t<th>Default</th>\r\n\t\t\t\t<th>Required</th>\r\n\t\t\t\t<th>Description</th>\r\n\t\t\t</tr>\r\n\t\t\t<tr v-for=\"item in component.meta.options\">\r\n\t\t\t\t<td>{{item.name}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<code>{{item.type}}</code>\r\n\t\t\t\t</td>\r\n\t\t\t\t<td><code v-if=\"item.default\">{{item.default}}</code></td>\r\n\t\t\t\t<td>{{item.required == true ? 'yes' : ''}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<p v-html=\"item.description\"></p>\r\n\t\t\t\t\t<p v-if=\"item.values\">\r\n\t\t\t\t\t\tPosible values:\r\n\t\t\t\t\t\t<code v-for=\"item in item.values\">{{item}}</code>\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t</table>\t\r\n\t</div>\r\n\r\n\t<!-- Accessibility notes -->\r\n\t<div class=\"accessibility\" v-if=\"component.meta.accessibility\">\r\n\t\t<h3>Accessibility Notes</h3>\r\n\t\t<p v-html=\"component.meta.accessibility\"></p>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Browser Support -->\r\n\t<div class=\"browserSupport\" v-if=\"component.meta.browserSupport\">\r\n\t\t<h3>Browser Support</h3>\r\n\t\t<span class=\"label label-primary\" v-for=\"item in component.meta.browserSupport\">{{ item }}</span>\r\n\t</div>\r\n</section>\r\n";
+	module.exports = "<section class=\"vuestrap-docs-demo\" id=\"{{meta.name}}\">\r\n\r\n\t<!-- Meta title -->\r\n\t<h2>{{meta.title}}</h2>\r\n\t<p v-html=\"meta.description\"></p>\r\n\r\n\t<div class=\"m-b\"></div>\r\n\t\r\n\t<!-- component notes -->\r\n\t<div class=\"alert alert-info\" role=\"alert\" v-if=\"meta.note\">\r\n  \t<icon background=\"circle-outline\" size=\"sm\" variant=\"info\" text=\"i\"></icon> <span v-html=\"meta.note\"></span>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Component manipulators -->\r\n\t<slot name=\"controls\"></slot>\r\n\r\n\t<!-- Output & Code sample -->\r\n\t<div class=\"code-demo\">\r\n\t\t\r\n\t\t<!-- a real component rendered here -->\r\n\t\t<slot class=\"markup\" name=\"markup\"></slot>\r\n\t\t\r\n\t\t<!-- snippet -->\r\n\t\t<div class=\"highlight\">\r\n\t\t\t<pre v-html=\"snippet\"></pre>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Options -->\r\n\t<div class=\"options\" v-if=\"meta.options.length\">\r\n\t\t<h3>Options</h3>\r\n\t\t<table class='table table-responsive'>\r\n\t\t\t<tr>\r\n\t\t\t\t<th>Name</th>\r\n\t\t\t\t<th>Type</th>\r\n\t\t\t\t<th>Default</th>\r\n\t\t\t\t<th>Required</th>\r\n\t\t\t\t<th>Description</th>\r\n\t\t\t</tr>\r\n\t\t\t<tr v-for=\"item in meta.options\">\r\n\t\t\t\t<td>{{item.name}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<code>{{item.type}}</code>\r\n\t\t\t\t</td>\r\n\t\t\t\t<td><code v-if=\"item.default\">{{item.default}}</code></td>\r\n\t\t\t\t<td>{{item.required == true ? 'yes' : ''}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<p v-html=\"item.description\"></p>\r\n\t\t\t\t\t<p v-if=\"item.values\">\r\n\t\t\t\t\t\tPosible values:\r\n\t\t\t\t\t\t<code v-for=\"item in item.values\">{{item}}</code>\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t</table>\t\r\n\t</div>\r\n\r\n\t<!-- Accessibility notes -->\r\n\t<div class=\"accessibility\" v-if=\"meta.accessibility\">\r\n\t\t<h3>Accessibility Notes</h3>\r\n\t\t<p v-html=\"meta.accessibility\"></p>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Browser Support -->\r\n\t<div class=\"browserSupport\" v-if=\"meta.browserSupport\">\r\n\t\t<h3>Browser Support</h3>\r\n\t\t<span class=\"label label-primary\" v-for=\"item in meta.browserSupport\">{{ item }}</span>\r\n\t</div>\r\n</section>\r\n";
 
 /***/ },
-/* 13 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(14);
+	__webpack_require__(25);
 
 /***/ },
-/* 14 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(15);
+	var content = __webpack_require__(26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -733,10 +1807,10 @@
 	}
 
 /***/ },
-/* 15 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -747,27 +1821,27 @@
 
 
 /***/ },
-/* 16 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(17);
+	__webpack_require__(28);
 	
-	__webpack_require__(19);
+	__webpack_require__(30);
 
 /***/ },
-/* 17 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(29);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -784,10 +1858,10 @@
 	}
 
 /***/ },
-/* 18 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -798,16 +1872,16 @@
 
 
 /***/ },
-/* 19 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(20);
+	var content = __webpack_require__(31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -824,10 +1898,10 @@
 	}
 
 /***/ },
-/* 20 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -838,7 +1912,7 @@
 
 
 /***/ },
-/* 21 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -850,15 +1924,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(22);
+	__webpack_require__(33);
 	
-	var _searchHtml = __webpack_require__(24);
+	var _searchHtml = __webpack_require__(35);
 	
 	var _searchHtml2 = _interopRequireDefault(_searchHtml);
 	
-	__webpack_require__(25);
+	__webpack_require__(36);
 	
-	__webpack_require__(28);
+	__webpack_require__(39);
 	
 	// export component object
 	exports['default'] = {
@@ -878,7 +1952,7 @@
 	            type: Array,
 	            'default': []
 	        },
-	        current: {
+	        currentView: {
 	            type: String,
 	            'default': null
 	        }
@@ -887,16 +1961,16 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 22 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(23);
+	var content = __webpack_require__(34);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -913,10 +1987,10 @@
 	}
 
 /***/ },
-/* 23 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -927,33 +2001,33 @@
 
 
 /***/ },
-/* 24 */
+/* 35 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length > showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"/docs/{{item.meta.name}}\" \r\n    class=\"list-group-item\" \r\n    v-bind:class=\"{active: current && item.meta.name === current}\" \r\n    v-for=\"item in list | filterBy search in 'meta.title'\">\r\n    {{item.meta.title}}\r\n  </a>\r\n</div>";
+	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length > showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"{{item.url}}\" \r\n    class=\"list-group-item\" \r\n    v-bind:class=\"{active: currentView && item.name === currentView}\" \r\n    v-for=\"item in list | filterBy search in 'title'\">\r\n    {{item.title}}\r\n  </a>\r\n</div>";
 
 /***/ },
-/* 25 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(26);
+	__webpack_require__(37);
 	
-	__webpack_require__(14);
+	__webpack_require__(25);
 
 /***/ },
-/* 26 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(27);
+	var content = __webpack_require__(38);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -970,10 +2044,10 @@
 	}
 
 /***/ },
-/* 27 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -984,29 +2058,29 @@
 
 
 /***/ },
-/* 28 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(19);
+	__webpack_require__(30);
 	
-	__webpack_require__(29);
+	__webpack_require__(40);
 	
-	__webpack_require__(31);
+	__webpack_require__(42);
 
 /***/ },
-/* 29 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(41);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1023,10 +2097,10 @@
 	}
 
 /***/ },
-/* 30 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1037,16 +2111,16 @@
 
 
 /***/ },
-/* 31 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(32);
+	var content = __webpack_require__(43);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1063,10 +2137,10 @@
 	}
 
 /***/ },
-/* 32 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1077,25 +2151,25 @@
 
 
 /***/ },
-/* 33 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(34);
+	__webpack_require__(45);
 
 /***/ },
-/* 34 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(35);
+	var content = __webpack_require__(46);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1112,10 +2186,10 @@
 	}
 
 /***/ },
-/* 35 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1126,31 +2200,31 @@
 
 
 /***/ },
-/* 36 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(37);
+	__webpack_require__(48);
 	
-	__webpack_require__(19);
+	__webpack_require__(30);
 	
-	__webpack_require__(34);
+	__webpack_require__(45);
 	
-	__webpack_require__(29);
+	__webpack_require__(40);
 
 /***/ },
-/* 37 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(38);
+	var content = __webpack_require__(49);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1167,10 +2241,10 @@
 	}
 
 /***/ },
-/* 38 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1181,34 +2255,34 @@
 
 
 /***/ },
-/* 39 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(19);
+	__webpack_require__(30);
 
 /***/ },
-/* 40 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(41);
+	__webpack_require__(52);
 
 /***/ },
-/* 41 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(42);
+	var content = __webpack_require__(53);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1225,10 +2299,10 @@
 	}
 
 /***/ },
-/* 42 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1239,25 +2313,25 @@
 
 
 /***/ },
-/* 43 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(44);
+	__webpack_require__(55);
 
 /***/ },
-/* 44 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(45);
+	var content = __webpack_require__(56);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1274,10 +2348,10 @@
 	}
 
 /***/ },
-/* 45 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(4)();
 	// imports
 	
 	
@@ -1288,7 +2362,7 @@
 
 
 /***/ },
-/* 46 */
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1302,8 +2376,8 @@
 		},
 		"scripts": {
 			"dev": "webpack -w --colors --progress --config webpack.build.js --env dev",
-			"dist": "gulp && webpack --colors --progress --config  webpack.build.js --env docs && webpack --colors --progress --config webpack.build.js --env dev && webpack --colors --progress --config webpack.build.js --env dist",
-			"docs": "gulp && webpack-dev-server --inline --hot --quiet --config webpack.build.js --env docs"
+			"dist": "webpack --colors --progress --config  webpack.build.js --env docs && webpack --colors --progress --config webpack.build.js --env dev && webpack --colors --progress --config webpack.build.js --env dist",
+			"docs": "webpack-dev-server --inline --hot --quiet --config webpack.build.js --env docs"
 		},
 		"keywords": [
 			"Bootstrap4",
@@ -1329,8 +2403,10 @@
 			"babel-eslint": "^4.1.3",
 			"babel-loader": "^5.3.3",
 			"css-loader": "^0.21.0",
+			"director": "^1.2.8",
 			"event-stream": "^3.3.2",
 			"extract-text-webpack-plugin": "^0.8.2",
+			"file-loader": "^0.8.5",
 			"gulp": "^3.9.0",
 			"gulp-data": "^1.2.0",
 			"gulp-ejs": "^1.2.1",
@@ -1341,15 +2417,21 @@
 			"gulp-snippet-highlight": "^1.0.0",
 			"highlight.js": "^8.9.1",
 			"html-loader": "^0.3.0",
+			"image-webpack-loader": "^1.6.2",
 			"json-loader": "^0.5.4",
+			"loader-utils": "^0.2.12",
+			"markdown-highlight-loader": "^0.1.2",
+			"markdown-loader": "^0.1.7",
 			"node-sass": "^3.4.1",
 			"optimist": "^0.6.1",
+			"raw-loader": "^0.5.1",
 			"sass-loader": "^3.1.1",
 			"style-loader": "^0.13.0",
+			"url-loader": "^0.5.7",
 			"vue-router": "^0.7.7",
 			"vuestrap-docs": "^0.1.0",
 			"vuestrap-theme-loader": "^0.1.2",
-			"webpack": "^1.12.1",
+			"webpack": "^1.12.9",
 			"webpack-dev-server": "^1.12.1"
 		},
 		"homepage": "https://github.com/kzima/vuestrap-icons#readme"

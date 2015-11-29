@@ -26,9 +26,6 @@ export default {
       name: {
         type: String
       },
-      name: {
-        type: String
-      },
       background: {
         type: String,
         default: '',
@@ -52,7 +49,7 @@ export default {
       path: {
         type: String,
         default() {
-          return '/node_modules/vuestrap-icons/assets/sprite.svg'
+          return 'node_modules/vuestrap-icons/assets/icons.min.svg'
         }
       }
     }
