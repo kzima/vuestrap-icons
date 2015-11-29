@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	__webpack_require__(7);
 	
-	var _iconsHtml = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./icons.html\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _iconsHtml = __webpack_require__(9);
 	
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 	
@@ -139,9 +139,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    name: {
 	      type: String
 	    },
-	    name: {
-	      type: String
-	    },
 	    background: {
 	      type: String,
 	      'default': ''
@@ -165,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    path: {
 	      type: String,
 	      'default': function _default() {
-	        return '/node_modules/vuestrap-icons/assets/sprite.svg';
+	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }
 	    }
 	  }
@@ -177,6 +174,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 8 */,
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<svg class=\"icon\" v-if=\"name\">\r\n\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t</svg>\r\n\t<svg class=\"icon-background\" v-if=\"background\" >\r\n\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t</svg>\r\n\t<span class=\"text\" v-if=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ }
 /******/ ])

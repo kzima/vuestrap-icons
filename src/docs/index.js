@@ -1,6 +1,11 @@
-// import components meta data
-import icon from 'src/docs/components/icons'
-import demo from 'vuestrap-docs/src/components/demo'
+// import normalize, grid, utilities and Vue
+import 'vuestrap/core'
+
+// import pages
+import introductionPage from 'src/docs/pages/introduction'
+import iconsPage from 'src/docs/pages/icons'
+
+// import component dependencies
 import search from 'vuestrap-docs/src/components/search'
 
 // import vuestrap dependencies
@@ -11,38 +16,79 @@ import 'vuestrap/components/list-group'
 import 'vuestrap/components/jumbotron'
 import 'vuestrap/components/tables'
 
-// import other dependencies
+// import package.json meta data
 import pkg from 'package.json'
 
+// import route util
+import {router, handleRoute} from 'utils'
+
+// components
+// list of all dependencies
+const components = {
+	search: search
+}
+
+// component pages
+const pages = {
+	intro: introductionPage,
+	icons: iconsPage,
+}
+
+// list of routes
+const routes = []
+const demoPages = []
+
+// list of all comps used in the searchbar
+for (const key in pages) {
+	if (pages.hasOwnProperty(key)) {
+		if (key !== 'intro') {
+	    const meta = pages[key].data().meta
+	    const route = {
+				name: meta.name,
+				title: meta.title,
+				pageTitle: 'Vuestrap Docs - ' + meta.title,
+				route: '/' + meta.name,
+				url: '/#/' + meta.name
+			}
+	    // add route for demo page
+			routes.push(route)
+			// add to demoPages Collection
+			demoPages.push(route)
+		} else {
+			// add special route for intro
+			routes.push({
+				name: 'intro',
+				title: 'Introduction',
+				pageTitle: 'Vuestrap Docs',
+				route: '/',
+				url: '/#/'
+			})
+		}
+		// add to components
+		components[key] = pages[key]
+	}
+}
+
 // start docs instance
-new Vue({
+window.docs = new Vue({
 	el: '#docs',
 	data: {
-		title: 'Vuestrap Docs',
+		pageTitle: 'Vuestrap Docs',
 		pkg: pkg,
-		page: null,
-		components: [icon],
+		demoPages: demoPages,
+		currentView: '',
 	},
-	computed: {
-		currentComponent() {
-			let currentComponent = null; //{meta: {options: [], name: ''}, snippet: '', controls: null}
-			this.components.forEach((component) => {
-				if (component.meta.name === this.page) {
-					currentComponent = component
-				}
-			})
-			return currentComponent
-		}
-	},
-	components: {
-		'icon': vuestrapIcons.icons,
-		'demo': demo,
-		'search': search
-	},
+	components: components,
 	ready() {
-		let segments = window.location.pathname.split( '/' )
-		segments = segments.filter((n) => { return n !== ''})
-		this.page = segments[segments.length - 1]
-		this.title = this.currentComponent && this.currentComponent.meta.title ? 'Vuestrap Docs - ' + this.currentComponent.meta.title : 'Vuestrap Docs - ' + this.pkg.name
+		// handle routes for other demo pages
+		routes.forEach((route) => {
+      handleRoute(route, () => {
+      	this.$set('currentView', route.name)
+        this.$set('pageTitle', route.pageTitle)
+      })
+    })
+
+		// init router
+    router.init('/')
 	}
 })

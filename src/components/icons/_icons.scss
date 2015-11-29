@@ -1,10 +1,10 @@
 // kzima/icons
 // variables
-$vuestrap-icons-size-sm: 1.2rem !default;
-$vuestrap-icons-size-md: 1.6rem !default;
+$vuestrap-icons-size-sm: 1.0rem !default;
+$vuestrap-icons-size-md: 1.5rem !default;
 $vuestrap-icons-size-lg: 2.0rem !default;
-$vuestrap-icons-size-xl: 2.4rem !default;
-$vuestrap-icons-size-xxl: 2.8rem !default;
+$vuestrap-icons-size-xl: 3.0rem !default;
+$vuestrap-icons-size-xxl: 3.5rem !default;
 $vuestrap-icons-fill-default: #818a91 !default;
 $vuestrap-icons-fill-dark: #000 !default;
 $vuestrap-icons-fill-light: #fff !default;
@@ -59,7 +59,6 @@ $vuestrap-icons-fill-danger: $brand-danger !default;
     }
     .icon-background {
         @include size(100%);
-        padding: 1px;
         position: absolute;
         top: 0;
         left: 0;

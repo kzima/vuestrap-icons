@@ -34,7 +34,7 @@
 			"type": "String",
 			"values": ["sm","md","lg","xl","xxl"],
 			"default": "md",
-			"description": "Size of the icon. 'sm' starts at 1.2em ('sm') and increments by 0.4em for next sizes."
+			"description": "Size of the icon. 'sm' starts at 1.0em ('sm') and increments by 0.5em for next sizes."
 		}, 
 		{
 			"name": "text",

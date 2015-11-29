@@ -2,13 +2,12 @@
 <!-- main vue app -->
 <html lang="en"  id="docs">
 	<head>
-		<title v-text="title">Vuestrap Docs</title>
+		<title v-text="pageTitle">Vuestrap Docs</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="/assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
-		<link href='/dist/vuestrap-icons.css' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
 		<style>
 			html {
@@ -51,21 +50,23 @@
 		</style>
 	</head>
 
-
-
 	<body v-cloak>
+
 		<!-- header -->
 		<nav class="navbar navbar-fixed-top navbar-light bg-faded">
 	    <div class="container">
-	        <a class="navbar-brand text-center" href="/">
-						<img src="/assets/vuestrap-logo.svg" alt="Vuestrap logo">
+	        <a class="navbar-brand text-center" href="/#/">
+						<img src="assets/vuestrap-logo.svg" alt="Vuestrap logo">
 					</a>
-					<a class="navbar-brand text-center" href="/">
+					<a class="navbar-brand text-center" href="/#/">
 						Documentation
 					</a>
 					<ul class="nav navbar-nav pull-right">
 						<li class="nav-item">
-							<a href="{{pkg.repository.url}}" class="btn btn-success">Github</a>
+							<a href="/#/" class="btn">Introduction</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{pkg.homepage}}" class="btn btn-success" target="_blank">Github</a>
 						</li>
 	    </div><!-- /.container -->
 	  </nav><!-- /.navbar -->
@@ -74,64 +75,19 @@
 		<div class="container">
 			<div class="row row-offcanvas row-offcanvas-right">
 				<div class="col-xs-12 col-sm-9">
-		      <div class="jumbotron">
-		        <h1>{{pkg.name}} <span class="label label-success">{{pkg.version}}</span></h1>
-		        <p>{{pkg.description}}</p>
-		      </div>
-	      	<h2>Installation</h2>
-	      	<div class="row">
-	      		<div class="col-xs-12 col-sm-6">
-					    <h3>Compiled</h3>
-					    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>
-					    <code>bower install {{pkg.name}} --save-dev</code>
-	      		</div>
-	      		<div class="col-xs-12 col-sm-6">
-					    <h3>Source</h3>
-					    <p>Source Sass, JavaScript, and documentation files.</p>
-					    <code>npm install {{pkg.name}} --save-dev</code>
-					   </div>
-	      	</div>
-
-	      	<div class="m-b-lg"></div>
-	      	<h2>Usage</h2>
-	      	<p>For compiled components, use it within your Vue instance like this:</p>
-	      	<p><code>new Vue({ components: { 'component-name': {{pkg.library}}.componentName }})</code></p>
-
-					<div class="m-b"></div>
-					<strong>OR</strong>
-					<div class="m-b"></div>
-
-	      	<p>If you chosen to work with source components, just import* desired component like so:</p>
-	      	<p><code>import componentName from '{{name}}/src/components/component-name'</code></p>
-	      	<p>and then load it in your Vue instance:</p>
-	      	<p><code>new Vue({ components: { 'component-name': componentName }})</code></p>
-	      	<p>*Note: You will need <a href="https://github.com/babel/babel-loader">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>
+					<component :is="currentView"></component>
 		    </div><!-- /col-xs-12 -->
 
 				<!-- sidebar -->
 				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-					<!-- 
--->
-
-          <!-- introduction button -->
-          <div class="list-group">
-            <a href="/" class="list-group-item" v-bind:class="{active: !currentComponent.meta.name}">Introduction</a>
-          </div>
-          <div class="m-b"></div>
-
-
-          <search :list="components" :current="currentComponent.meta.name"></search>
-          
-
+					<search :list="demoPages" :current-view="currentView"></search>
 				</div><!--/sidebar-->
 
 			</div><!--/row-->
 		</div><!--/container-->
-
-
-    
-		<script src="/node_modules/vue/dist/vue.js"></script>
-		<script src="/dist/vuestrap-icons.js"></script>
-		<script src="/build/build.js"></script>
+		
+		<!-- footer -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+		<script src="build/build.js"></script>
 	</body>
 </html>
