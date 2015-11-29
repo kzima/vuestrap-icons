@@ -48,7 +48,7 @@ for (const key in pages) {
 				title: meta.title,
 				pageTitle: 'Vuestrap Docs - ' + meta.title,
 				route: '/' + meta.name,
-				url: '/#/' + meta.name
+				url: '#/' + meta.name
 			}
 	    // add route for demo page
 			routes.push(route)
@@ -61,7 +61,7 @@ for (const key in pages) {
 				title: 'Introduction',
 				pageTitle: 'Vuestrap Docs',
 				route: '/',
-				url: '/#/'
+				url: '#/'
 			})
 		}
 		// add to components
