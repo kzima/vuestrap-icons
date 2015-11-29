@@ -1940,7 +1940,7 @@
 	    replace: true,
 	    data: function data() {
 	        return {
-	            search: ""
+	            search: ''
 	        };
 	    },
 	    props: {
@@ -2004,7 +2004,7 @@
 /* 35 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length > showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"/docs/{{name}}\" \r\n    class=\"list-group-item\" \r\n    v-bind:class=\"{active: current && name === current}\" \r\n    v-for=\"item in list | filterBy search in 'title'\">\r\n    {{title}}\r\n  </a>\r\n</div>";
+	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length > showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"{{item.url}}\" \r\n    class=\"list-group-item\" \r\n    v-bind:class=\"{active: current && item.name === current}\" \r\n    v-for=\"item in list | filterBy search in 'title'\">\r\n    {{item.title}}\r\n  </a>\r\n</div>";
 
 /***/ },
 /* 36 */
@@ -2403,6 +2403,7 @@
 			"babel-eslint": "^4.1.3",
 			"babel-loader": "^5.3.3",
 			"css-loader": "^0.21.0",
+			"director": "^1.2.8",
 			"event-stream": "^3.3.2",
 			"extract-text-webpack-plugin": "^0.8.2",
 			"html-loader": "^0.3.0",
