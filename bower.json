@@ -35,8 +35,5 @@
     "gulpfile.js",
     "index.html",
     "webpack*.js"
-  ],
-  "devDependencies": {
-    "svg4everybody": "~2.0.0"
-  }
+  ]
 }

@@ -5,7 +5,6 @@ import director from 'director'
 export const router = new director.Router
 export const handleRoute = (route, cb) => {
     // listen to the route changes and set currentView object for the current route
-    const routeUrl = '/' + route.name
     router.on(route.route, () => {
         window.scrollTo(0, 0)
         cb()

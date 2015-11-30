@@ -2,12 +2,12 @@
 	"name": "icons",
 	"title": "Icons",
 	"description": "SVG sprite consists of 223 icons from Iconic, plus two custom ones: circle-fill and circle-outline.",
-	"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs.</a>",
+	"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs</a>.",
 	"dependencies": ["vuestrap/core/icons"],
 	"category": "components",
 	"browserSupport": {
-		"browsers": ["*IE9+", "Android 4.3"],
-		"note": "* For svg icons to work corectly on IE, you need to add svg4everybody polyfill to your html document. Quick install:<br><code>bower install svg4everybody --save-dev</code>.<br><code>&lt;script src='bower_components/svg4everybody/dist/svg4everybody.min.js'></script></code><br><code>svg4everybody()</script></code>."
+		"browsers": ["*IE9+", "*Android 4.3"],
+		"note": "* Icons use svg4everybody v.2.0.0 polyfill and it is embeded in the component's code base."
 	},
 	"options": [
 		{
