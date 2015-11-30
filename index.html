@@ -9,6 +9,7 @@
 		<link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+
 		<style>
 			html {
 				font-size: 16px;
@@ -68,6 +69,7 @@
 						<li class="nav-item">
 							<a href="{{pkg.homepage}}" class="btn btn-success" target="_blank">Github</a>
 						</li>
+					</ul>
 	    </div><!-- /.container -->
 	  </nav><!-- /.navbar -->
 
@@ -89,5 +91,10 @@
 		<!-- footer -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
 		<script src="build/build.js"></script>
+		
+		<!-- enable svg support in all browsers -->
+    <script src="bower_components/svg4everybody/dist/svg4everybody.min.js"></script>
+		<script>svg4everybody()</script>
+
 	</body>
 </html>

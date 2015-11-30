@@ -1843,6 +1843,8 @@ a.text-danger:focus, a.text-danger:hover {
   .vuestrap-icons.icons-left {
     margin-left: 0;
     margin-right: 0.2em; }
+  .vuestrap-icons .hidden {
+    display: none; }
 
 .vuestrap-icons.icons-sm {
   font-size: 1rem;
