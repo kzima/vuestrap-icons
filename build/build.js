@@ -2619,7 +2619,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.4",
+		"version": "0.4.6",
 		"description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
