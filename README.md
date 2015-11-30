@@ -13,6 +13,7 @@ QUICK USE
 =========
 
 For compiled components, use it within your Vue instance like this:
+
 <code>new Vue({ components: { 'icon': vuestrapIcons.icons }})</code>
 
 -- OR --
