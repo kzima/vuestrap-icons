@@ -189,8 +189,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_core.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_core.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_core.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_core.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -553,7 +553,7 @@
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install <span class=\"hljs-expansion\">{{pkg.name}}</span> --save-dev</code>\r\n\t</div>\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install <span class=\"hljs-expansion\">{{pkg.name}}</span> --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new <span class=\"hljs-constant\">Vue</span>({ <span class=\"hljs-symbol\">components:</span> { <span class=\"hljs-string\">`{{sampleComponentName}}`</span>: <span class=\"hljs-expansion\">{{pkg.library}}</span>.<span class=\"hljs-expansion\">{{sampleComponentName}}</span> }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import <span class=\"hljs-expansion\">{{sampleComponentName}}</span> from <span class=\"hljs-string\">`{{pkg.name}}/src/components/{{sampleComponentName}}`</span></code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new <span class=\"hljs-constant\">Vue</span>({ <span class=\"hljs-symbol\">components:</span> { <span class=\"hljs-string\">`{{sampleComponentName}}`</span>: <span class=\"hljs-expansion\">{{sampleComponentName}}</span> }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>";
+	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install <span class=\"hljs-expansion\">{{pkg.name}}</span> --save-dev</code>\r\n\t</div>\r\n\t<div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install <span class=\"hljs-expansion\">{{pkg.name}}</span> --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new <span class=\"hljs-constant\">Vue</span>({ <span class=\"hljs-symbol\">components:</span> { <span class=\"hljs-string\">'{{sampleComponentName}}'</span>: <span class=\"hljs-expansion\">{{pkg.library}}</span>.<span class=\"hljs-expansion\">{{sampleComponentName}}</span> }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import <span class=\"hljs-expansion\">{{sampleComponentName}}</span> from <span class=\"hljs-string\">'{{pkg.name}}/src/components/{{sampleComponentName}}'</span></code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new <span class=\"hljs-constant\">Vue</span>({ <span class=\"hljs-symbol\">components:</span> { <span class=\"hljs-string\">'{{sampleComponentName}}'</span>: <span class=\"hljs-expansion\">{{sampleComponentName}}</span> }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>";
 
 /***/ },
 /* 8 */
@@ -620,13 +620,13 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<code lang=\"html\">\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;info&quot;</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-fill&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-fill&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;1&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;1&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;2&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">&quot;circle-outline&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span> text=<span class=\"hljs-string\">&quot;11&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">&quot;btn btn-md&quot;</span> aria-label=<span class=\"hljs-string\">&quot;settings&quot;</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;cog&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;/button&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">&quot;btn btn-md&quot;</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">&quot;cog&quot;</span> size=<span class=\"hljs-string\">&quot;md&quot;</span> variant=<span class=\"hljs-string\">&quot;primary&quot;</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt; settings\r\n&lt;/button&gt;\r\n</code>";
+	module.exports = "<code lang=\"html\">\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">\"info\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">\"info\"</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-outline\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">\"info\"</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-fill\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-fill\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span> text=<span class=\"hljs-string\">\"1\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-outline\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span> text=<span class=\"hljs-string\">\"1\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-outline\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span> text=<span class=\"hljs-string\">\"2\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-attribute\">icon</span> <span class=\"hljs-attribute\">background</span>=<span class=\"hljs-string\">\"circle-outline\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span> text=<span class=\"hljs-string\">\"11\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">\"btn btn-md\"</span> aria-label=<span class=\"hljs-string\">\"settings\"</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">\"cog\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt;\r\n&lt;/button&gt;\r\n&lt;<span class=\"hljs-tag\">button</span> class=<span class=\"hljs-string\">\"btn btn-md\"</span>&gt;\r\n  &lt;<span class=\"hljs-attribute\">icon</span> name=<span class=\"hljs-string\">\"cog\"</span> size=<span class=\"hljs-string\">\"md\"</span> variant=<span class=\"hljs-string\">\"primary\"</span>&gt;&lt;/<span class=\"hljs-attribute\">icon</span>&gt; settings\r\n&lt;/button&gt;\r\n</code>";
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<!-- demo component -->\r\n<demo :meta=\"meta\" :snippet=\"snippet\" path=\"assets/icons.svg\" v-if=\"controls\">\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\" v-if=\"controls\">\r\n\t\t<label>\r\n\t\t\tsize\r\n\t\t\t<select v-model=\"controls.size\">\r\n\t\t\t\t<option v-for=\"option in controls.sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\r\n\t\t<label>\r\n\t\t\tvariant\r\n\t\t\t<select v-model=\"controls.variant\">\r\n\t\t\t\t<option v-for=\"option in controls.variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" v-bind:class=\"{ inverse: controls.variant === &apos;light&apos; }\">\r\n\r\n\t\t<icon name=\"info\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"2\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"11\"></icon>\r\n\t\t<button class=\"btn btn-md\" aria-label=\"settings\"><icon name=\"cog\" :size=\"&apos;md&apos;\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> </button>\r\n\t\t<button class=\"btn btn-md\"><icon name=\"cog\" :size=\"&apos;md&apos;\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> settings</button>\r\n\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n</demo>";
+	module.exports = "<!-- demo component -->\r\n<demo :meta=\"meta\" :snippet=\"snippet\" v-if=\"controls\">\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\" v-if=\"controls\">\r\n\t\t<label>\r\n\t\t\tsize\r\n\t\t\t<select v-model=\"controls.size\">\r\n\t\t\t\t<option v-for=\"option in controls.sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\r\n\t\t<label>\r\n\t\t\tvariant\r\n\t\t\t<select v-model=\"controls.variant\">\r\n\t\t\t\t<option v-for=\"option in controls.variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" v-bind:class=\"{ inverse: controls.variant === 'light' }\">\r\n\r\n\t\t<icon name=\"info\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon name=\"info\" background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon>\r\n\t\t<icon background=\"circle-fill\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"1\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"2\"></icon>\r\n\t\t<icon background=\"circle-outline\" :size=\"controls.size\" :variant=\"controls.variant\" path=\"assets/icons.svg\" text=\"11\"></icon>\r\n\t\t<button class=\"btn btn-md\" aria-label=\"settings\"><icon name=\"cog\" :size=\"'md'\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> </button>\r\n\t\t<button class=\"btn btn-md\"><icon name=\"cog\" :size=\"'md'\" :variant=\"controls.variant\" path=\"assets/icons.svg\"></icon> settings</button>\r\n\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n</demo>";
 
 /***/ },
 /* 11 */
@@ -733,8 +733,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss", function() {
-				var newContent = require("!!./../../../../../css-loader/index.js!./../../../../../autoprefixer-loader/index.js!./../../../../../sass-loader/index.js!./../../../../../vuestrap-theme-loader/index.js!./_icons.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/vuestrap-theme-loader/index.js!./_icons.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/autoprefixer-loader/index.js!./../../../../node_modules/sass-loader/index.js!./../../../../node_modules/vuestrap-theme-loader/index.js!./_icons.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1761,8 +1761,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_icons.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_icons.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./_icons.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./_icons.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1789,7 +1789,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + &apos;#&apos; + name\">\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + &apos;#&apos; + background\">\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\">\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\">\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
 /* 21 */
@@ -1814,8 +1814,6 @@
 	
 	__webpack_require__(28);
 	
-	//import icons from 'vuestrap-icons'
-	
 	// export component object
 	exports['default'] = {
 	    template: _demoHtml2['default'],
@@ -1831,9 +1829,6 @@
 	            'default': "",
 	            required: true
 	        }
-	    },
-	    components: {
-	        //'icon': icons,
 	    }
 	};
 	module.exports = exports['default'];
@@ -1854,8 +1849,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../css-loader/index.js!./../../../../../../autoprefixer-loader/index.js!./../../../../../../sass-loader/index.js!./../../../../../../vuestrap-theme-loader/index.js!./_demo.scss", function() {
-				var newContent = require("!!./../../../../../../css-loader/index.js!./../../../../../../autoprefixer-loader/index.js!./../../../../../../sass-loader/index.js!./../../../../../../vuestrap-theme-loader/index.js!./_demo.scss");
+			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_demo.scss", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_demo.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1873,7 +1868,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".vuestrap-docs-demo {\n  margin-bottom: 4rem; }\n  .vuestrap-docs-demo .code-demo {\n    position: relative;\n    margin-left: 0;\n    margin-right: 0;\n    margin-bottom: 2rem;\n    padding: 1rem;\n    padding-bottom: 0;\n    border: solid #f7f7f9;\n    border-width: .2rem; }\n    .vuestrap-docs-demo .code-demo > .inverse {\n      background-color: #898989;\n      padding: 0.2em; }\n  .vuestrap-docs-demo .highlight {\n    padding: 1rem;\n    margin: 1rem -1rem;\n    background-color: #f7f7f9;\n    margin-bottom: 0; }\n    .vuestrap-docs-demo .highlight pre {\n      margin-bottom: 0; }\n  .vuestrap-docs-demo .options > table code {\n    display: inline-block;\n    margin-right: 2px;\n    margin-bottom: 2px; }\n  .vuestrap-docs-demo .options > table td {\n    width: 10%; }\n  .vuestrap-docs-demo .options > table td:nth-child(1) {\n    min-width: 150px;\n    color: #563d7c; }\n  .vuestrap-docs-demo .options > table td:nth-child(5) {\n    width: 50%; }\n  .vuestrap-docs-demo [slot=\"controls\"] {\n    background-color: #f7f7f9;\n    padding: 1rem; }\n  .vuestrap-docs-demo [slot=\"controls\"] label {\n    margin-bottom: 0;\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo label.btn {\n    margin-bottom: 0; }\n  .vuestrap-docs-demo .label {\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo > .label {\n    background-color: #563d7c; }\n  .vuestrap-docs-demo > .alert {\n    border-right-color: #e6e6ec;\n    border-top-color: #e6e6ec;\n    border-bottom-color: #e6e6ec;\n    border-left-width: 5px;\n    background-color: transparent; }\n    .vuestrap-docs-demo > .alert .icons {\n      vertical-align: text-bottom; }\n  .vuestrap-docs-demo .tab-content .tab-pane {\n    padding: 1em 0; }\n", ""]);
+	exports.push([module.id, ".vuestrap-docs-demo {\n  margin-bottom: 4rem; }\n  .vuestrap-docs-demo .code-demo {\n    position: relative;\n    margin-left: 0;\n    margin-right: 0;\n    margin-bottom: 2rem;\n    padding: 1rem;\n    padding-bottom: 0;\n    border: solid #f7f7f9;\n    border-width: .2rem; }\n    .vuestrap-docs-demo .code-demo > .inverse {\n      background-color: #898989;\n      padding: 0.2em; }\n  .vuestrap-docs-demo .highlight {\n    padding: 1rem;\n    padding-top: 0;\n    margin: 1rem -1rem;\n    background-color: #f7f7f9;\n    margin-bottom: 0; }\n    .vuestrap-docs-demo .highlight pre {\n      margin-bottom: 0; }\n  .vuestrap-docs-demo .options > table code {\n    display: inline-block;\n    margin-right: 2px;\n    margin-bottom: 2px; }\n  .vuestrap-docs-demo .options > table td {\n    width: 10%; }\n  .vuestrap-docs-demo .options > table td:nth-child(1) {\n    min-width: 150px;\n    color: #563d7c; }\n  .vuestrap-docs-demo .options > table td:nth-child(5) {\n    width: 50%; }\n  .vuestrap-docs-demo [slot=\"controls\"] {\n    background-color: #f7f7f9;\n    padding: 1rem; }\n  .vuestrap-docs-demo [slot=\"controls\"] label {\n    margin-bottom: 0;\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo label.btn {\n    margin-bottom: 0; }\n  .vuestrap-docs-demo .label {\n    margin-right: 0.5rem; }\n  .vuestrap-docs-demo > .label {\n    background-color: #563d7c; }\n  .vuestrap-docs-demo > .alert {\n    border-right-color: #e6e6ec;\n    border-top-color: #e6e6ec;\n    border-bottom-color: #e6e6ec;\n    border-left-width: 5px;\n    background-color: transparent; }\n    .vuestrap-docs-demo > .alert .icons {\n      vertical-align: text-bottom; }\n  .vuestrap-docs-demo .tab-content .tab-pane {\n    padding: 1em 0; }\n", ""]);
 	
 	// exports
 
@@ -1882,7 +1877,7 @@
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"vuestrap-docs-demo\" id=\"{{meta.name}}\">\r\n\r\n\t<!-- Meta title -->\r\n\t<h2>{{meta.title}}</h2>\r\n\t<p v-html=\"meta.description\"></p>\r\n\r\n\t<div class=\"m-b\"></div>\r\n\r\n\t<div class=\"alert alert-info\" role=\"alert\" v-if=\"meta.note\">\r\n  \t<icon background=\"circle-outline\" size=\"sm\" variant=\"info\" text=\"i\"></icon> <span v-html=\"meta.note\"></span>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Component manipulators -->\r\n\t<slot name=\"controls\"></slot>\r\n\r\n\t<!-- Output & Code sample -->\r\n\t<div class=\"code-demo\">\r\n\r\n\t\t<slot class=\"markup\" name=\"markup\"></slot>\r\n\r\n\t\t<div class=\"highlight\">\r\n\t\t\t<pre><code v-html=\"snippet\"></code></pre>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Options -->\r\n\t<div class=\"options\" v-if=\"meta.options.length\">\r\n\t\t<h3>Options</h3>\r\n\t\t<table class=\"table table-responsive\">\r\n\t\t\t<tr>\r\n\t\t\t\t<th>Name</th>\r\n\t\t\t\t<th>Type</th>\r\n\t\t\t\t<th>Default</th>\r\n\t\t\t\t<th>Required</th>\r\n\t\t\t\t<th>Description</th>\r\n\t\t\t</tr>\r\n\t\t\t<tr v-for=\"item in meta.options\">\r\n\t\t\t\t<td>{{item.name}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<code v-html=\"item.type\"></code>\r\n\t\t\t\t</td>\r\n\t\t\t\t<td><code v-if=\"item.default\" v-html=\"item.default\"></code></td>\r\n\t\t\t\t<td>{{item.required == true ? &apos;yes&apos; : &apos;&apos;}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<p v-html=\"item.description\"></p>\r\n\t\t\t\t\t<p v-if=\"item.values\">\r\n\t\t\t\t\t\tPosible values:\r\n\t\t\t\t\t\t<code v-for=\"item in item.values\"><span class=\"hljs-expansion\">{{item}}</span></code>\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t</table>\t\r\n\t</div>\r\n\r\n\t<!-- Accessibility -->\r\n\t<div class=\"accessibility\" v-if=\"meta.accessibility\">\r\n\t\t<h3>Accessibility</h3>\r\n\t\t<p v-html=\"meta.accessibility\"></p>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Browser Support -->\r\n\t<div class=\"browserSupport\" v-if=\"meta.browserSupport\">\r\n\t\t<h3>Browser Support</h3>\r\n\t\t<span class=\"label label-primary\" v-for=\"item in meta.browserSupport.browsers\">{{ item }}</span>\r\n\t\t<p><small v-html=\"meta.browserSupport.note\"></small></p>\r\n\t</div>\r\n</section>\r\n";
+	module.exports = "<section class=\"vuestrap-docs-demo\" id=\"{{meta.name}}\">\r\n\r\n\t<!-- Meta title -->\r\n\t<h2>{{meta.title}}</h2>\r\n\t<p v-html=\"meta.description\"></p>\r\n\r\n\t<div class=\"m-b\"></div>\r\n\r\n\t<div class=\"alert alert-info\" role=\"alert\" v-if=\"meta.note\">\r\n  \t<icon background=\"circle-outline\" size=\"sm\" variant=\"info\" text=\"i\"></icon> <span v-html=\"meta.note\"></span>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Component manipulators -->\r\n\t<slot name=\"controls\"></slot>\r\n\r\n\t<!-- Output & Code sample -->\r\n\t<div class=\"code-demo\">\r\n\r\n\t\t<slot class=\"markup\" name=\"markup\"></slot>\r\n\r\n\t\t<div class=\"highlight\">\r\n\t\t\t<pre><code v-html=\"snippet\"><span class=\"hljs-expansion\">{{snippet}}</span></code></pre>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Options -->\r\n\t<div class=\"options\" v-if=\"meta.options.length\">\r\n\t\t<h3>Options</h3>\r\n\t\t<table class=\"table table-responsive\">\r\n\t\t\t<tr>\r\n\t\t\t\t<th>Name</th>\r\n\t\t\t\t<th>Type</th>\r\n\t\t\t\t<th>Default</th>\r\n\t\t\t\t<th>Required</th>\r\n\t\t\t\t<th>Description</th>\r\n\t\t\t</tr>\r\n\t\t\t<tr v-for=\"item in meta.options\">\r\n\t\t\t\t<td>{{item.name}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<code v-html=\"item.type\"></code>\r\n\t\t\t\t</td>\r\n\t\t\t\t<td><code v-if=\"item.default\" v-html=\"item.default\"></code></td>\r\n\t\t\t\t<td>{{item.required == true ? 'yes' : ''}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<p v-html=\"item.description\"></p>\r\n\t\t\t\t\t<p v-if=\"item.values\">\r\n\t\t\t\t\t\tPosible values:\r\n\t\t\t\t\t\t<code v-for=\"item in item.values\"><span class=\"hljs-expansion\">{{item}}</span></code>\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t</table>\t\r\n\t</div>\r\n\r\n\t<!-- Accessibility -->\r\n\t<div class=\"accessibility\" v-if=\"meta.accessibility\">\r\n\t\t<h3>Accessibility</h3>\r\n\t\t<p v-html=\"meta.accessibility\"></p>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Browser Support -->\r\n\t<div class=\"browserSupport\" v-if=\"meta.browserSupport\">\r\n\t\t<h3>Browser Support</h3>\r\n\t\t<span class=\"label label-primary\" v-for=\"item in meta.browserSupport.browsers\">{{ item }}</span>\r\n\t\t<p><small v-html=\"meta.browserSupport.note\"></small></p>\r\n\t</div>\r\n</section>\r\n";
 
 /***/ },
 /* 25 */
@@ -1909,8 +1904,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_labels.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_labels.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_labels.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_labels.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1960,8 +1955,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_alert.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_alert.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_alert.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_alert.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2000,8 +1995,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_buttons.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_buttons.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_buttons.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_buttons.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2228,8 +2223,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../../css-loader/index.js!./../../../../../../autoprefixer-loader/index.js!./../../../../../../sass-loader/index.js!./../../../../../../vuestrap-theme-loader/index.js!./_search.scss", function() {
-				var newContent = require("!!./../../../../../../css-loader/index.js!./../../../../../../autoprefixer-loader/index.js!./../../../../../../sass-loader/index.js!./../../../../../../vuestrap-theme-loader/index.js!./_search.scss");
+			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_search.scss", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_search.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2256,7 +2251,7 @@
 /* 37 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length &gt; showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"{{item.url}}\" class=\"list-group-item\" v-bind:class=\"{active: currentView &amp;&amp; item.name === currentView}\" v-for=\"item in list | filterBy search in &apos;title&apos;\">\r\n    {{item.title}}\r\n  </a>\r\n</div>";
+	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length > showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"{{item.url}}\" class=\"list-group-item\" v-bind:class=\"{active: currentView && item.name === currentView}\" v-for=\"item in list | filterBy search in 'title'\">\r\n    {{item.title}}\r\n  </a>\r\n</div>";
 
 /***/ },
 /* 38 */
@@ -2285,8 +2280,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_list-group.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_list-group.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_list-group.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_list-group.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2338,8 +2333,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_forms.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_forms.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_forms.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_forms.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2378,8 +2373,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_custom-forms.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_custom-forms.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_custom-forms.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_custom-forms.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2427,8 +2422,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_nav.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_nav.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_nav.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_nav.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2482,8 +2477,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_navbar.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_navbar.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_navbar.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_navbar.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2540,8 +2535,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_jumbotron.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_jumbotron.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_jumbotron.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_jumbotron.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2589,8 +2584,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_tables.scss", function() {
-				var newContent = require("!!./../../../../css-loader/index.js!./../../../../autoprefixer-loader/index.js!./../../../../sass-loader/index.js!./../../../../vuestrap-theme-loader/index.js!./_tables.scss");
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_tables.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_tables.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2619,7 +2614,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.6",
+		"version": "0.4.7",
 		"description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
@@ -2656,15 +2651,16 @@
 			"babel-loader": "^5.3.3",
 			"css-loader": "^0.21.0",
 			"director": "^1.2.8",
-			"event-stream": "^3.3.2",
 			"extract-text-webpack-plugin": "^0.8.2",
+			"highlightjs-loader": "^0.1.3",
 			"html-loader": "^0.3.0",
 			"json-loader": "^0.5.4",
 			"node-sass": "^3.4.1",
 			"optimist": "^0.6.1",
 			"sass-loader": "^3.1.1",
 			"style-loader": "^0.13.0",
-			"vuestrap-docs": "^0.1.0",
+			"vuestrap": "^1.0.0",
+			"vuestrap-docs": "^0.1.2",
 			"vuestrap-theme-loader": "^0.1.2",
 			"webpack": "^1.12.9",
 			"webpack-dev-server": "^1.12.1"
