@@ -63,27 +63,27 @@
 	
 	// import component dependencies
 	
-	var _vuestrapDocsSrcComponentsSearch = __webpack_require__(32);
+	var _vuestrapDocsSrcComponentsSearch = __webpack_require__(33);
 	
 	var _vuestrapDocsSrcComponentsSearch2 = _interopRequireDefault(_vuestrapDocsSrcComponentsSearch);
 	
 	// import vuestrap dependencies
 	
-	__webpack_require__(44);
+	__webpack_require__(45);
 	
-	__webpack_require__(47);
-	
-	__webpack_require__(50);
-	
-	__webpack_require__(36);
+	__webpack_require__(48);
 	
 	__webpack_require__(51);
 	
-	__webpack_require__(54);
+	__webpack_require__(37);
+	
+	__webpack_require__(52);
+	
+	__webpack_require__(55);
 	
 	// import package.json meta data
 	
-	var _packageJson = __webpack_require__(57);
+	var _packageJson = __webpack_require__(58);
 	
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 	
@@ -591,6 +591,10 @@
 	
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 	
+	// enable support for svg in all browsers
+	
+	__webpack_require__(32);
+	
 	exports['default'] = {
 		template: _iconsHtml2['default'],
 		data: function data() {
@@ -632,7 +636,7 @@
 		"name": "icons",
 		"title": "Icons",
 		"description": "SVG sprite consists of 223 icons from Iconic, plus two custom ones: circle-fill and circle-outline.",
-		"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs.</a>",
+		"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs</a>.",
 		"dependencies": [
 			"vuestrap/core/icons"
 		],
@@ -640,9 +644,9 @@
 		"browserSupport": {
 			"browsers": [
 				"*IE9+",
-				"Android 4.3"
+				"*Android 4.3"
 			],
-			"note": "* For svg icons to work corectly on IE, you need to add svg4everybody polyfill to your html document. Quick install:<br><code>bower install svg4everybody --save-dev</code>.<br><code>&lt;script src='bower_components/svg4everybody/dist/svg4everybody.min.js'></script></code><br><code>svg4everybody()</script></code>."
+			"note": "* Icons use svg4everybody v.2.0.0 polyfill and it is embeded in the component's code base."
 		},
 		"options": [
 			{
@@ -776,7 +780,6 @@
 	exports.router = router;
 	var handleRoute = function handleRoute(route, cb) {
 	  // listen to the route changes and set currentView object for the current route
-	  var routeUrl = '/' + route.name;
 	  router.on(route.route, function () {
 	    window.scrollTo(0, 0);
 	    cb();
@@ -1917,6 +1920,145 @@
 
 /***/ },
 /* 32 */
+/***/ function(module, exports) {
+
+	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	var LEGACY_SUPPORT = false;
+	
+	function embed(svg, g) {
+		if (g) {
+			var viewBox = !svg.getAttribute('viewBox') && g.getAttribute('viewBox');
+			var fragment = document.createDocumentFragment();
+			var clone = g.cloneNode(true);
+	
+			if (viewBox) {
+				svg.setAttribute('viewBox', viewBox);
+			}
+	
+			while (clone.childNodes.length) {
+				fragment.appendChild(clone.firstChild);
+			}
+	
+			svg.appendChild(fragment);
+		}
+	}
+	
+	function loadreadystatechange(xhr) {
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				var x = document.createElement('x');
+	
+				x.innerHTML = xhr.responseText;
+	
+				xhr.s.splice(0).map(function (array) {
+					embed(array[0], x.querySelector('#' + array[1].replace(/(\W)/g, '\\$1')));
+				});
+			}
+		};
+	
+		xhr.onreadystatechange();
+	}
+	
+	function svg4everybody(opts) {
+		opts = opts || {};
+	
+		var uses = document.getElementsByTagName('use');
+		var nosvg;
+	
+		if (LEGACY_SUPPORT) {
+			var fallback = opts.fallback || function (src) {
+				return src.replace(/\?[^#]+/, '').replace('#', '.').replace(/^\./, '') + '.png' + (/\?[^#]+/.exec(src) || [''])[0];
+			};
+	
+			nosvg = 'nosvg' in opts ? opts.nosvg : /\bMSIE [1-8]\b/.test(navigator.userAgent);
+	
+			if (nosvg) {
+				document.createElement('svg');
+				document.createElement('use');
+			}
+		}
+	
+		var polyfill = 'polyfill' in opts ? opts.polyfill : LEGACY_SUPPORT ? nosvg || /\bEdge\/12\b|\bMSIE [1-8]\b|\bTrident\/[567]\b|\bVersion\/7.0 Safari\b/.test(navigator.userAgent) || (navigator.userAgent.match(/AppleWebKit\/(\d+)/) || [])[1] < 537 : /\bEdge\/12\b|\bTrident\/[567]\b|\bVersion\/7.0 Safari\b/.test(navigator.userAgent) || (navigator.userAgent.match(/AppleWebKit\/(\d+)/) || [])[1] < 537;
+	
+		var validate = opts.validate;
+		var requestAnimationFrame = window.requestAnimationFrame || setTimeout;
+		var svgCache = {};
+	
+		function oninterval() {
+			var use;
+	
+			while (use = uses[0]) {
+				var svg = use.parentNode;
+	
+				if (svg && /svg/i.test(svg.nodeName)) {
+					var src = use.getAttribute('xlink:href');
+	
+					if (LEGACY_SUPPORT && nosvg) {
+						var img = new Image();
+						var width = svg.getAttribute('width');
+						var height = svg.getAttribute('height');
+	
+						img.src = fallback(src, svg, use);
+	
+						if (width) {
+							img.setAttribute('width', width);
+						}
+	
+						if (height) {
+							img.setAttribute('height', height);
+						}
+	
+						svg.replaceChild(img, use);
+					} else if (polyfill) {
+						if (!validate || validate(src, svg, use)) {
+							var url = src.split('#');
+							var url_root = url[0];
+							var url_hash = url[1];
+	
+							svg.removeChild(use);
+	
+							if (url_root.length) {
+								var xhr = svgCache[url_root] = svgCache[url_root] || new XMLHttpRequest();
+	
+								if (!xhr.s) {
+									xhr.s = [];
+	
+									xhr.open('GET', url_root);
+	
+									xhr.send();
+								}
+	
+								xhr.s.push([svg, url_hash]);
+	
+								loadreadystatechange(xhr);
+							} else {
+								embed(svg, document.getElementById(url_hash));
+							}
+						}
+					}
+				}
+			}
+	
+			requestAnimationFrame(oninterval, 17);
+		}
+	
+		if (polyfill) {
+			oninterval();
+		}
+	}
+	
+	var svgPolyfill = {
+		svg4everybody: svg4everybody()
+	};
+	exports.svgPolyfill = svgPolyfill;
+
+/***/ },
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -1928,15 +2070,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(33);
+	__webpack_require__(34);
 	
-	var _searchHtml = __webpack_require__(35);
+	var _searchHtml = __webpack_require__(36);
 	
 	var _searchHtml2 = _interopRequireDefault(_searchHtml);
 	
-	__webpack_require__(36);
+	__webpack_require__(37);
 	
-	__webpack_require__(39);
+	__webpack_require__(40);
 	
 	// export component object
 	exports['default'] = {
@@ -1965,13 +2107,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(34);
+	var content = __webpack_require__(35);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -1991,7 +2133,7 @@
 	}
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2005,30 +2147,30 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"vuestrap-docs-search list-group\">\r\n  <!-- search -->\r\n  <div class=\"list-group-item list-group-search\" v-if=\"list.length &gt; showSearch\">\r\n    <input type=\"text\" class=\"form-control\" placeholder=\"Search...\" v-model=\"search\" autocomplete=\"off\">\r\n  </div>\r\n  <!-- components -->\r\n  <a href=\"{{item.url}}\" class=\"list-group-item\" v-bind:class=\"{active: currentView &amp;&amp; item.name === currentView}\" v-for=\"item in list | filterBy search in &apos;title&apos;\">\r\n    {{item.title}}\r\n  </a>\r\n</div>";
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(37);
+	__webpack_require__(38);
 	
 	__webpack_require__(25);
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(38);
+	var content = __webpack_require__(39);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2048,7 +2190,7 @@
 	}
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2062,7 +2204,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -2070,18 +2212,18 @@
 	
 	__webpack_require__(30);
 	
-	__webpack_require__(40);
+	__webpack_require__(41);
 	
-	__webpack_require__(42);
+	__webpack_require__(43);
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(41);
+	var content = __webpack_require__(42);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2101,7 +2243,7 @@
 	}
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2115,13 +2257,13 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(43);
+	var content = __webpack_require__(44);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2141,7 +2283,7 @@
 	}
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2155,22 +2297,22 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(45);
+	__webpack_require__(46);
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(46);
+	var content = __webpack_require__(47);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2190,7 +2332,7 @@
 	}
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2204,28 +2346,28 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(48);
+	__webpack_require__(49);
 	
 	__webpack_require__(30);
 	
-	__webpack_require__(45);
+	__webpack_require__(46);
 	
-	__webpack_require__(40);
+	__webpack_require__(41);
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(50);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2245,7 +2387,7 @@
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2259,7 +2401,7 @@
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -2268,22 +2410,22 @@
 	__webpack_require__(30);
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(52);
+	__webpack_require__(53);
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(53);
+	var content = __webpack_require__(54);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2303,7 +2445,7 @@
 	}
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2317,22 +2459,22 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 	
-	__webpack_require__(55);
+	__webpack_require__(56);
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(56);
+	var content = __webpack_require__(57);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2352,7 +2494,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2366,12 +2508,12 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.2.0",
+		"version": "0.4.0",
 		"description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
