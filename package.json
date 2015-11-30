@@ -1,6 +1,6 @@
 {
   "name": "vuestrap-icons",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
   "library": "vuestrapIcons",
   "repository": {
