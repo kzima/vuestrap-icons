@@ -33,6 +33,14 @@ if (ENV === 'dist') {
 	}))
 }
 
+if (ENV === 'dist') {
+  config.plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: '"dev"'
+    }
+  }))
+}
+
 /**
  * define devtool for source maps
  */

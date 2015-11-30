@@ -56,7 +56,7 @@
 			"name": "path",
 			"type": "String",
 			"default": "",
-			"description": "It allows you to specify a path to svg sprite. Default path is set to <code>/node_modules/vuestrap-icons/assets/sprite.svg</code>"
+			"description": "It allows you to specify a path to svg sprite. Default path is set to <code>node_modules/vuestrap-icons/assets/sprite.svg</code> for development and <code>bower_components/vuestrap-icons/assets/sprite.svg</code> for production."
 		}
 	]
 }

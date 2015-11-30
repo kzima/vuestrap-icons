@@ -32,6 +32,8 @@
     "src",
     "build",
     "assets",
+    "!assets/icons.min.svg",
+    "!assets/icons.svg",
     "gulpfile.js",
     "index.html",
     "webpack*.js",
