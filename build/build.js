@@ -1632,8 +1632,7 @@
 	    path: {
 	      type: String,
 	      'default': function _default() {
-	        console.log(process.env.NODE_ENV);
-	        if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'production') {
+	        if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
@@ -2620,7 +2619,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.3",
+		"version": "0.4.4",
 		"description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {

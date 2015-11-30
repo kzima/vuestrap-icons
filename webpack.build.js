@@ -32,8 +32,8 @@ if (ENV === 'dist') {
 	  }
 	}))
 }
-
-if (ENV === 'dist') {
+// plugins for dev
+if (ENV === 'dev') {
   config.plugins.push(new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: '"dev"'

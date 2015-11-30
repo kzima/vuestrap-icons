@@ -49,7 +49,6 @@ export default {
       path: {
         type: String,
         default() {
-          console.log(process.env.NODE_ENV);
           if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
             return 'bower_components/vuestrap-icons/assets/icons.min.svg'
           }
