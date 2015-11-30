@@ -16,7 +16,7 @@ module.exports = {
       loader: 'babel'
     }, {
       test: /\.html$/,
-      loader: 'html!highlight'
+      loader: 'html!highlightjs'
     }, {
       test: /\.json$/,
       loader: 'json'
