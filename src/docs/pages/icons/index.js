@@ -5,8 +5,6 @@ import './_icons.scss'
 import {sizes, variants} from 'utils'
 import icon from 'src/components/icons'
 import demo from 'vuestrap-docs/src/components/demo'
-// enable support for svg in all browsers
-import './svg4everybody.js'
 
 export default {
 	template: template,

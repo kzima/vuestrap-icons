@@ -26,7 +26,9 @@
 <div class="m-b"></div>
 
 <p>If you chosen to work with source components, just import* desired component like so:</p>
-<p><code>import {{sampleComponentName}} from '{{pkg.name}}/src/components/{{sampleComponentName}}'</code></p>
+<p><code>import icon from '{{pkg.name}}/src/components/{{sampleComponentName}}'</code></p>
 <p>and then load it in your Vue instance:</p>
-<p><code>new Vue({ components: { '{{sampleComponentName}}': {{sampleComponentName}} }})</code></p>
+<p><code>new Vue({ components: { icon: {{sampleComponentName}} }})</code></p>
+<p>You can then use icon component in your html, like so:</p>
+<p><code>&lt;icon name="cog">&lt;/icon></code></p>
 <p>*Note: You will need <a href="https://github.com/babel/babel-loader">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>

@@ -1,6 +1,8 @@
 // import dependencies
 import './_icons.scss'
 import template from './icons.html'
+// enable support for svg in all browsers
+import './svg4everybody.js'
 
 // export component object
 export default {

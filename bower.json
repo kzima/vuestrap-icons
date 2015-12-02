@@ -4,7 +4,7 @@
   "authors": [
     "kzima <kris@mosquito.ie>"
   ],
-  "description": "Vuestrap Icons Component complements Bootstrap 4 with svg icons.",
+  "description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
   "main": [
     "dist/vuestrap-icons.js",
     "dist/vuestrap-icons.js.map",

@@ -1,7 +1,7 @@
 Vuestrap Icons Component
 =========
 
-Vuestrap Icons Component is complements Bootstrap 4 with svg icons.
+Vuestrap Icons Component complements [vuestrap web components](http://kzima.github.io/vuestrap-base-components/#/) with svg icons.
 SVG sprite consists of 223 icons from Iconic — www.useiconic.com/open plus two custom ones: circle-fill and circle-outline
 
 DEMO
