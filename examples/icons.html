@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+    <link href="../dist/vuestrap-icons.css" rel='stylesheet' type='text/css'>
+    <script src="../dist/vuestrap-icons.js"></script>
+    <style>
+      body {
+        padding: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <icon name="info" size="md" variant="primary" path="../../assets/icons.min.svg"></icon>
+      <icon name="info" background="circle-outline" size="md" variant="primary" path="../../assets/icons.min.svg"></icon>
+      <icon name="info" background="circle-fill" size="md" variant="primary" path="../../assets/icons.min.svg"></icon>
+      <icon background="circle-fill" size="md" variant="primary" text="1" path="../../assets/icons.min.svg"></icon>
+      <icon background="circle-outline" size="md" variant="primary" text="1" path="../../assets/icons.min.svg"></icon>
+      <icon background="circle-outline" size="md" variant="primary" text="2" path="../../assets/icons.min.svg"></icon>
+      <icon background="circle-outline" size="md" variant="primary" text="11" path="../../assets/icons.min.svg"></icon>
+      <button class="btn btn-md" aria-label="settings">
+        <icon name="cog" size="md" variant="primary" path="../../assets/icons.min.svg"></icon>
+      </button>
+      <button class="btn btn-md">
+        <icon name="cog" size="md" variant="primary" path="../../assets/icons.min.svg"></icon> settings
+      </button>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+         components: { 'icon': vuestrapIcons.icons }
+      })
+    </script>
+  </body>
+</html>

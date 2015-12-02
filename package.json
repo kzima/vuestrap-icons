@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "webpack -w --colors --progress --config webpack.build.js --env dev",
     "dist": "webpack --colors --progress --config  webpack.build.js --env docs && webpack --colors --progress --config webpack.build.js --env dev && webpack --colors --progress --config webpack.build.js --env dist",
-    "docs": "webpack-dev-server --port 3000 --inline --hot --quiet --config webpack.build.js --env docs"
+    "docs": "webpack-dev-server --inline --hot --quiet --config webpack.build.js --env docs"
   },
   "keywords": [
     "Bootstrap4",
