@@ -1,6 +1,6 @@
 {
   "name": "vuestrap-icons",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
   "library": "vuestrapIcons",
   "repository": {
@@ -46,7 +46,7 @@
     "sass-loader": "^3.1.1",
     "style-loader": "^0.13.0",
     "vuestrap": "^1.0.0",
-    "vuestrap-docs": "^0.1.5",
+    "vuestrap-docs": "^0.2.0",
     "vuestrap-theme-loader": "^0.1.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.12.1"

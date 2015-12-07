@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- main vue app -->
-<html lang="en"  id="docs">
+<html lang="en" id="docs" v-cloak>
 	<head>
 		<title v-text="pageTitle">Vuestrap Docs</title>
 		<meta charset="utf-8">
@@ -51,42 +51,9 @@
 		</style>
 	</head>
 
-	<body v-cloak>
+	<body>
 
-		<!-- header -->
-		<nav class="navbar navbar-fixed-top navbar-light bg-faded">
-	    <div class="container">
-	        <a class="navbar-brand text-center" href="#/">
-						<img src="assets/vuestrap-logo.svg" alt="Vuestrap logo">
-					</a>
-					<a class="navbar-brand text-center" href="#/">
-						Documentation
-					</a>
-					<ul class="nav navbar-nav pull-right">
-						<li class="nav-item">
-							<a href="#/" class="btn">Introduction</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{pkg.homepage}}" class="btn btn-success" target="_blank">Github</a>
-						</li>
-					</ul>
-	    </div><!-- /.container -->
-	  </nav><!-- /.navbar -->
-
-		<!-- content -->
-		<div class="container">
-			<div class="row row-offcanvas row-offcanvas-right">
-				<div class="col-xs-12 col-sm-9">
-					<component :is="currentView"></component>
-		    </div><!-- /col-xs-12 -->
-
-				<!-- sidebar -->
-				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-					<search :list="demoPages" :current-view="currentView"></search>
-				</div><!--/sidebar-->
-
-			</div><!--/row-->
-		</div><!--/container-->
+		<docs-pages :routes="routes"></docs-pages>
 		
 		<!-- footer -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>

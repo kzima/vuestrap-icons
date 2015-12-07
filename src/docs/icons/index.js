@@ -7,6 +7,11 @@ import icon from 'src/components/icons'
 import demo from 'vuestrap-docs/src/components/demo'
 
 export default {
+	route: {
+		url: '/icons',
+		name: 'icons',
+		title: 'Icons',
+	},
 	template: template,
 	data() {
 		return {
@@ -21,7 +26,7 @@ export default {
 		}
 	},
 	components: {
-		icon: icon,
+		'vs-icon': icon,
 		demo: demo,
 	},
 }

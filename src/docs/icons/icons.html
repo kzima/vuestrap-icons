@@ -1,0 +1,40 @@
+<!-- demo component -->
+<demo :meta="meta" :snippet="snippet" v-if="controls">
+	<!-- Html controls start-->
+	<div slot="controls" v-if="controls">
+		<label>
+			size
+			<select v-model="controls.size">
+				<option v-for="option in controls.sizes" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+
+		<label>
+			variant
+			<select v-model="controls.variant">
+				<option v-for="option in controls.variants" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+	</div>
+	<!-- Html controls end-->
+	
+	<!-- Html markup start-->
+	<div slot="markup" v-bind:class="{ inverse: controls.variant === 'light' }">
+
+		<vs-icon name="info" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
+		<vs-icon name="info" background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
+		<vs-icon name="info" background="circle-fill" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
+		<vs-icon background="circle-fill" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="1"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="1"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="2"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="11"></vs-icon>
+		<button class="btn btn-md" aria-label="settings"><vs-icon name="cog" :size="'md'" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon> </button>
+		<button class="btn btn-md"><vs-icon name="cog" :size="'md'" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon> settings</button>
+
+	</div>
+	<!-- Html markup end-->
+</demo>
