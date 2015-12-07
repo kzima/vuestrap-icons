@@ -12,37 +12,46 @@ DEMO
 QUICK USE
 =========
 
-For compiled components, use it within your Vue instance like this:
+**Bower:**
 
-```js
-new Vue({
-	el: '#app',
-	components: { 'icon': vuestrapIcons.icons }
-})
-```
+ - `bower install vuestrap-icons`
+ - add script in your html document:
+ ```js
+ <script src="bower_components/vuestrap-icons/dist/vuestrapIcons.min.js"></script>
+ ```
+ - use it within your Vue instance like this:
 
--- OR --
+  ```js
+  new Vue({
+  	el: '#app',
+  	components: { 'vs-icon': vuestrapIcons.icons }
+  })
+  ```
 
-If you chosen to work with source components, just import* desired component like so:
 
-```js
-import icons from 'vuestrap-icons/src/components/icons'
-```
+**From source:**
 
-and then load it in your Vue instance:
+ - `npm install vuestrap-icons`
+ - import* desired component like so:
 
-```js
-new Vue({
-	el: '#app',
-	components: { 'icon': icons }
-})
-```
+  ```js
+  import icons from 'vuestrap-icons/src/components/icons'
+  ```
 
-*Note: You will need <a href="https://github.com/babel/babel-loader">Babel Loader</a> in your Webpack config file to support ES6 syntax.
+ - load it in your Vue instance:
+
+  ```js
+  new Vue({
+  	el: '#app',
+  	components: { 'vs-icon': icons }
+  })
+  ```
+
+  *Note: You will need <a href="https://github.com/babel/babel-loader">Babel Loader</a> in your Webpack config file to support ES6 syntax.
 
 You can then use icon component in your html, like so:
 ```html
-<icon name="cog"></icon>
+<vs-icon name="cog"></vs-icon>
 ```
 
 TODO
