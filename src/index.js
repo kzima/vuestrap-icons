@@ -8,12 +8,11 @@ import 'vuestrap/core'
 // docs component handles routing and demo pages
 import docsPages from 'vuestrap-docs/src/components/docs'
 
+// import utils
+import {getRoutes} from 'vuestrap-docs/utils'
+
 // import demo pages compatibile with docs component
 import docsRoutes from 'src/docs'
-
-// import utils
-import {getRoutes} from 'utils'
-
 
 // get list of the route objects
 const routes = getRoutes(docsRoutes)
@@ -28,6 +27,7 @@ window.docs = new Vue({
 	el: '#docs',
 	data: {
 		routes: routes,
+		pageTitle: 'Vuestrap Docs',
 	},
 	components: {
 		docsPages,
