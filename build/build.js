@@ -83,7 +83,8 @@
 	window.docs = new Vue({
 		el: '#docs',
 		data: {
-			routes: routes
+			routes: routes,
+			pageTitle: 'Vuestrap Docs'
 		},
 		components: {
 			docsPages: _vuestrapDocsSrcComponentsDocs2['default']
@@ -504,6 +505,10 @@
 	    props: {
 	        routes: {
 	            type: Array,
+	            required: true
+	        },
+	        pageTitle: {
+	            type: String,
 	            required: true
 	        }
 	    },
@@ -1840,7 +1845,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.11",
+		"version": "0.4.12",
 		"description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
@@ -1886,7 +1891,7 @@
 			"sass-loader": "^3.1.1",
 			"style-loader": "^0.13.0",
 			"vuestrap": "^1.0.0",
-			"vuestrap-docs": "^0.2.1",
+			"vuestrap-docs": "^0.2.3",
 			"vuestrap-theme-loader": "^0.1.2",
 			"webpack": "^1.12.9",
 			"webpack-dev-server": "^1.12.1"
