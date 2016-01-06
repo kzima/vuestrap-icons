@@ -1,18 +1,18 @@
 // kzima/icons
 // variables
-$vuestrap-icons-size-sm: 1.0rem !default;
-$vuestrap-icons-size-md: 1.5rem !default;
-$vuestrap-icons-size-lg: 2.0rem !default;
-$vuestrap-icons-size-xl: 3.0rem !default;
-$vuestrap-icons-size-xxl: 3.5rem !default;
-$vuestrap-icons-fill-default: #818a91 !default;
-$vuestrap-icons-fill-dark: #000 !default;
-$vuestrap-icons-fill-light: #fff !default;
-$vuestrap-icons-fill-primary: $brand-primary !default;
-$vuestrap-icons-fill-info: $brand-info !default;
-$vuestrap-icons-fill-success: $brand-success !default;
-$vuestrap-icons-fill-warning: $brand-warning !default;
-$vuestrap-icons-fill-danger: $brand-danger !default;
+$icons-size-sm: 1.0rem !default;
+$icons-size-md: 1.5rem !default;
+$icons-size-lg: 2.0rem !default;
+$icons-size-xl: 3.0rem !default;
+$icons-size-xxl: 3.5rem !default;
+$icons-fill-default: #818a91 !default;
+$icons-fill-dark: #000 !default;
+$icons-fill-light: #fff !default;
+$icons-fill-primary: $brand-primary !default;
+$icons-fill-info: $brand-info !default;
+$icons-fill-success: $brand-success !default;
+$icons-fill-warning: $brand-warning !default;
+$icons-fill-danger: $brand-danger !default;
 // mixins
 @mixin icon-variant ($mainColor, $secondaryColor) {
     .icon {
@@ -46,8 +46,8 @@ $vuestrap-icons-fill-danger: $brand-danger !default;
 }
 
 // global default
-.vuestrap-icons {
-    @include icon-size ($vuestrap-icons-size-md) display: inline-block;
+.icons-vuestrap {
+    @include icon-size ($icons-size-md) display: inline-block;
     vertical-align: middle;
     position: relative;
     .icon {
@@ -100,49 +100,49 @@ $vuestrap-icons-fill-danger: $brand-danger !default;
 }
 
 // svg icon sizes
-.vuestrap-icons {
+.icons-vuestrap {
     &.icons-sm {
-        @include icon-size($vuestrap-icons-size-sm)
+        @include icon-size($icons-size-sm)
     }
     &.icons-md {
-        @include icon-size($vuestrap-icons-size-md)
+        @include icon-size($icons-size-md)
     }
     &.icons-lg {
-        @include icon-size($vuestrap-icons-size-lg)
+        @include icon-size($icons-size-lg)
     }
     &.icons-xl {
-        @include icon-size($vuestrap-icons-size-xl)
+        @include icon-size($icons-size-xl)
     }
     &.icons-xxl {
-        @include icon-size($vuestrap-icons-size-xxl)
+        @include icon-size($icons-size-xxl)
     }
 }
 
 // svg icon fill variants
-.vuestrap-icons {
+.icons-vuestrap {
     //default
-    @include icon-variant($vuestrap-icons-fill-default, $vuestrap-icons-fill-light);
+    @include icon-variant($icons-fill-default, $icons-fill-light);
     // other variants
     &.icons-primary {
-        @include icon-variant($vuestrap-icons-fill-primary, #fff);
+        @include icon-variant($icons-fill-primary, #fff);
     }
     &.icons-info {
-        @include icon-variant($vuestrap-icons-fill-info, #fff);
+        @include icon-variant($icons-fill-info, #fff);
     }
     &.icons-success {
-        @include icon-variant($vuestrap-icons-fill-success, #fff);
+        @include icon-variant($icons-fill-success, #fff);
     }
     &.icons-warning {
-        @include icon-variant($vuestrap-icons-fill-warning, #fff);
+        @include icon-variant($icons-fill-warning, #fff);
     }
     &.icons-danger {
-        @include icon-variant($vuestrap-icons-fill-danger, #fff);
+        @include icon-variant($icons-fill-danger, #fff);
     }
     &.icons-dark {
-        @include icon-variant($vuestrap-icons-fill-dark, $vuestrap-icons-fill-light);
+        @include icon-variant($icons-fill-dark, $icons-fill-light);
     }
     &.icons-light {
-        @include icon-variant($vuestrap-icons-fill-light, $vuestrap-icons-fill-dark);
+        @include icon-variant($icons-fill-light, $icons-fill-dark);
     }
 }
 
@@ -156,6 +156,6 @@ $vuestrap-icons-fill-danger: $brand-danger !default;
 // if icon is inside hovered state button, make it white
 .btn:hover {
     svg {
-        fill: $vuestrap-icons-fill-light;
+        fill: $icons-fill-light;
     }
 }

@@ -1845,7 +1845,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.12",
+		"version": "0.4.13",
 		"description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
@@ -1997,7 +1997,7 @@
 
 	var _srcComponentsIcons2 = _interopRequireDefault(_srcComponentsIcons);
 
-	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(52);
+	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(51);
 
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 
@@ -2216,7 +2216,7 @@
 /* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {// import dependencies
+	// import dependencies
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -2225,15 +2225,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(48);
+	__webpack_require__(47);
 
-	var _iconsHtml = __webpack_require__(50);
+	var _iconsHtml = __webpack_require__(49);
 
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 
 	// enable support for svg in all browsers
 
-	__webpack_require__(51);
+	__webpack_require__(50);
 
 	// export component object
 	exports['default'] = {
@@ -2282,7 +2282,7 @@
 	    path: {
 	      type: String,
 	      'default': function _default() {
-	        if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
+	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
@@ -2291,118 +2291,15 @@
 	  }
 	};
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(47)))
 
 /***/ },
 /* 47 */
-/***/ function(module, exports) {
-
-	// shim for using process in browser
-
-	'use strict';
-
-	var process = module.exports = {};
-	var queue = [];
-	var draining = false;
-	var currentQueue;
-	var queueIndex = -1;
-
-	function cleanUpNextTick() {
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
-	}
-
-	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = setTimeout(cleanUpNextTick);
-	    draining = true;
-
-	    var len = queue.length;
-	    while (len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    clearTimeout(timeout);
-	}
-
-	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
-	    }
-	};
-
-	// v8 likes predictible objects
-	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
-	}
-	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
-	};
-	process.title = 'browser';
-	process.browser = true;
-	process.env = {};
-	process.argv = [];
-	process.version = ''; // empty string to avoid regexp issues
-	process.versions = {};
-
-	function noop() {}
-
-	process.on = noop;
-	process.addListener = noop;
-	process.once = noop;
-	process.off = noop;
-	process.removeListener = noop;
-	process.removeAllListeners = noop;
-	process.emit = noop;
-
-	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
-	};
-
-	process.cwd = function () {
-	    return '/';
-	};
-	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
-	};
-	process.umask = function () {
-	    return 0;
-	};
-
-/***/ },
-/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(48);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2422,7 +2319,7 @@
 	}
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2430,19 +2327,19 @@
 
 
 	// module
-	exports.push([module.id, ".vuestrap-icons {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative; }\n  .vuestrap-icons .icon {\n    width: 100%;\n    height: 100%;\n    top: 0%;\n    left: 0%;\n    position: absolute;\n    z-index: 2; }\n  .vuestrap-icons .icon-background {\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1; }\n  .vuestrap-icons.icons-bg-fill .icon, .vuestrap-icons.icons-bg-outline .icon {\n    width: 50%;\n    height: 50%;\n    top: 25%;\n    left: 25%; }\n  .vuestrap-icons .text {\n    position: relative;\n    color: #fff;\n    z-index: 3;\n    font-size: 70%;\n    width: 100%;\n    height: 100%;\n    display: table;\n    text-align: center; }\n    .vuestrap-icons .text > span {\n      display: table-cell;\n      vertical-align: middle; }\n  .vuestrap-icons.icons-right {\n    margin-left: 0.2em;\n    margin-right: 0; }\n  .vuestrap-icons.icons-left {\n    margin-left: 0;\n    margin-right: 0.2em; }\n  .vuestrap-icons .hidden {\n    display: none; }\n\n.vuestrap-icons.icons-sm {\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 1rem;\n  height: 1rem; }\n\n.vuestrap-icons.icons-md {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem; }\n\n.vuestrap-icons.icons-lg {\n  font-size: 2rem;\n  line-height: 2rem;\n  width: 2rem;\n  height: 2rem; }\n\n.vuestrap-icons.icons-xl {\n  font-size: 3rem;\n  line-height: 3rem;\n  width: 3rem;\n  height: 3rem; }\n\n.vuestrap-icons.icons-xxl {\n  font-size: 3.5rem;\n  line-height: 3.5rem;\n  width: 3.5rem;\n  height: 3.5rem; }\n\n.vuestrap-icons .icon {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-bg-fill .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-bg-outline .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-outline .text {\n  color: #818a91; }\n\n.vuestrap-icons.icons-primary .icon {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .text {\n  color: #563d7c; }\n\n.vuestrap-icons.icons-info .icon {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .text {\n  color: #5bc0de; }\n\n.vuestrap-icons.icons-success .icon {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .text {\n  color: #42b983; }\n\n.vuestrap-icons.icons-warning .icon {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .text {\n  color: #f0ad4e; }\n\n.vuestrap-icons.icons-danger .icon {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .text {\n  color: #d9534f; }\n\n.vuestrap-icons.icons-dark .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .text {\n  color: #fff; }\n\n.btn.disabled svg {\n  opacity: 0.5; }\n\n.btn:hover svg {\n  fill: #fff; }\n", ""]);
+	exports.push([module.id, ".icons-vuestrap {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative; }\n  .icons-vuestrap .icon {\n    width: 100%;\n    height: 100%;\n    top: 0%;\n    left: 0%;\n    position: absolute;\n    z-index: 2; }\n  .icons-vuestrap .icon-background {\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1; }\n  .icons-vuestrap.icons-bg-fill .icon, .icons-vuestrap.icons-bg-outline .icon {\n    width: 50%;\n    height: 50%;\n    top: 25%;\n    left: 25%; }\n  .icons-vuestrap .text {\n    position: relative;\n    color: #fff;\n    z-index: 3;\n    font-size: 70%;\n    width: 100%;\n    height: 100%;\n    display: table;\n    text-align: center; }\n    .icons-vuestrap .text > span {\n      display: table-cell;\n      vertical-align: middle; }\n  .icons-vuestrap.icons-right {\n    margin-left: 0.2em;\n    margin-right: 0; }\n  .icons-vuestrap.icons-left {\n    margin-left: 0;\n    margin-right: 0.2em; }\n  .icons-vuestrap .hidden {\n    display: none; }\n\n.icons-vuestrap.icons-sm {\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 1rem;\n  height: 1rem; }\n\n.icons-vuestrap.icons-md {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem; }\n\n.icons-vuestrap.icons-lg {\n  font-size: 2rem;\n  line-height: 2rem;\n  width: 2rem;\n  height: 2rem; }\n\n.icons-vuestrap.icons-xl {\n  font-size: 3rem;\n  line-height: 3rem;\n  width: 3rem;\n  height: 3rem; }\n\n.icons-vuestrap.icons-xxl {\n  font-size: 3.5rem;\n  line-height: 3.5rem;\n  width: 3.5rem;\n  height: 3.5rem; }\n\n.icons-vuestrap .icon {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-bg-fill .icon-background {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-bg-outline .icon-background {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-outline .text {\n  color: #818a91; }\n\n.icons-vuestrap.icons-primary .icon {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .icon-background {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-primary.icons-bg-outline .icon-background {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-outline .text {\n  color: #563d7c; }\n\n.icons-vuestrap.icons-info .icon {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .icon-background {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-info.icons-bg-outline .icon-background {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-outline .text {\n  color: #5bc0de; }\n\n.icons-vuestrap.icons-success .icon {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .icon-background {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-success.icons-bg-outline .icon-background {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-outline .text {\n  color: #42b983; }\n\n.icons-vuestrap.icons-warning .icon {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .icon-background {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-warning.icons-bg-outline .icon-background {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-outline .text {\n  color: #f0ad4e; }\n\n.icons-vuestrap.icons-danger .icon {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .icon-background {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-danger.icons-bg-outline .icon-background {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-outline .text {\n  color: #d9534f; }\n\n.icons-vuestrap.icons-dark .icon {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .icon-background {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-dark.icons-bg-outline .icon-background {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-outline .text {\n  color: #000; }\n\n.icons-vuestrap.icons-light .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .icon {\n  fill: #000; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .icon-background {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .text {\n  color: #000; }\n\n.icons-vuestrap.icons-light.icons-bg-outline .icon-background {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-outline .text {\n  color: #fff; }\n\n.btn.disabled svg {\n  opacity: 0.5; }\n\n.btn:hover svg {\n  fill: #fff; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports) {
 
 	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */
@@ -2581,7 +2478,7 @@
 	exports.svgPolyfill = svgPolyfill;
 
 /***/ },
-/* 52 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -2593,15 +2490,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(53);
+	__webpack_require__(52);
 
-	var _demoHtml = __webpack_require__(55);
+	var _demoHtml = __webpack_require__(54);
 
 	var _demoHtml2 = _interopRequireDefault(_demoHtml);
 
-	__webpack_require__(56);
+	__webpack_require__(55);
 
-	__webpack_require__(57);
+	__webpack_require__(56);
 
 	// export component object
 	exports['default'] = {
@@ -2623,13 +2520,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 53 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(54);
+	var content = __webpack_require__(53);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2649,7 +2546,7 @@
 	}
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2663,13 +2560,13 @@
 
 
 /***/ },
-/* 55 */
+/* 54 */
 /***/ function(module, exports) {
 
 	module.exports = "<section class=\"vuestrap-docs-demo\" id=\"{{meta.name}}\">\r\n\r\n\t<!-- Meta title -->\r\n\t<h2>{{meta.title}}</h2>\r\n\t<p v-html=\"meta.description\"></p>\r\n\r\n\t<div class=\"m-b\"></div>\r\n\r\n\t<div class=\"alert alert-info\" role=\"alert\" v-if=\"meta.note\">\r\n  \t<icon background=\"circle-outline\" size=\"sm\" variant=\"info\" text=\"i\"></icon> <span v-html=\"meta.note\"></span>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Component manipulators -->\r\n\t<slot name=\"controls\"></slot>\r\n\r\n\t<!-- Output & Code sample -->\r\n\t<div class=\"code-demo\">\r\n\r\n\t\t<slot class=\"markup\" name=\"markup\"></slot>\r\n\r\n\t\t<div class=\"highlight\">\r\n\t\t\t<pre><code v-html=\"snippet\"></code></pre>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<!-- Options -->\r\n\t<div class=\"options\" v-if=\"meta.options.length\">\r\n\t\t<h3>Options</h3>\r\n\t\t<table class='table table-responsive'>\r\n\t\t\t<tr>\r\n\t\t\t\t<th>Name</th>\r\n\t\t\t\t<th>Type</th>\r\n\t\t\t\t<th>Default</th>\r\n\t\t\t\t<th>Required</th>\r\n\t\t\t\t<th>Description</th>\r\n\t\t\t</tr>\r\n\t\t\t<tr v-for=\"item in meta.options\">\r\n\t\t\t\t<td>{{item.name}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<code v-html=\"item.type\"></code>\r\n\t\t\t\t</td>\r\n\t\t\t\t<td><code v-if=\"item.default\" v-html=\"item.default\"></code></td>\r\n\t\t\t\t<td>{{item.required == true ? 'yes' : ''}}</td>\r\n\t\t\t\t<td>\r\n\t\t\t\t\t<p v-html=\"item.description\"></p>\r\n\t\t\t\t\t<p v-if=\"item.values\">\r\n\t\t\t\t\t\tPosible values:\r\n\t\t\t\t\t\t<code v-for=\"item in item.values\">{{item}}</code>\r\n\t\t\t\t\t</p>\r\n\t\t\t\t</td>\r\n\t\t\t</tr>\r\n\t\t</table>\t\r\n\t</div>\r\n\r\n\t<!-- Accessibility -->\r\n\t<div class=\"accessibility\" v-if=\"meta.accessibility\">\r\n\t\t<h3>Accessibility</h3>\r\n\t\t<p v-html=\"meta.accessibility\"></p>\r\n\t</div>\r\n\r\n\t<div class=\"m-b-md\"></div>\r\n\r\n\t<!-- Browser Support -->\r\n\t<div class=\"browserSupport\" v-if=\"meta.browserSupport\">\r\n\t\t<h3>Browser Support</h3>\r\n\t\t<span class=\"label label-primary\" v-for=\"item in meta.browserSupport.browsers\">{{ item }}</span>\r\n\t\t<p><small v-html=\"meta.browserSupport.note\"></small></p>\r\n\t</div>\r\n</section>\r\n";
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -2678,24 +2575,24 @@
 	__webpack_require__(28);
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(58);
+	__webpack_require__(57);
 
 	__webpack_require__(16);
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(59);
+	var content = __webpack_require__(58);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2715,7 +2612,7 @@
 	}
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();

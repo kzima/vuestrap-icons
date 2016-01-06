@@ -60,6 +60,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	// import normalize, grid, utilities and
 	'use strict';
 	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	__webpack_require__(1);
@@ -73,10 +77,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _srcComponentsIcons2 = _interopRequireDefault(_srcComponentsIcons);
 	
 	var vuestrapIcons = {
-	  icons: _srcComponentsIcons2['default']
+	  'vs-icon': _srcComponentsIcons2['default']
 	};
 	
-	module.exports = vuestrapIcons;
+	exports['default'] = vuestrapIcons;
+	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
@@ -166,7 +171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    path: {
 	      type: String,
 	      'default': function _default() {
-	        if (true) {
+	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
@@ -187,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
 /* 10 */

@@ -10,7 +10,7 @@ import 'vuestrap/core'
 import icons from 'src/components/icons'
 
 const vuestrapIcons = {
-  icons,
+  'vs-icon': icons,
 }
 
-module.exports = vuestrapIcons
+export default vuestrapIcons
