@@ -174,6 +174,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
+	        if (false) {
+	          return 'assets/icons.min.svg';
+	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }
 	    }

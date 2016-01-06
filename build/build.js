@@ -1845,7 +1845,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.4.13",
+		"version": "0.4.14",
 		"description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
@@ -2284,6 +2284,9 @@
 	      'default': function _default() {
 	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
+	        }
+	        if (true) {
+	          return 'assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }
