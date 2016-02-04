@@ -59,6 +59,11 @@ export default {
           }
           return 'node_modules/vuestrap-icons/assets/icons.min.svg'
         }
+      },
+      ready() {
+        if (!this.path && this.$options.vuestrapIconsPath) {
+          this.path = this.$options.vuestrapIconsPath
+        }
       }
     }
 }

@@ -77,7 +77,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _srcComponentsIcons2 = _interopRequireDefault(_srcComponentsIcons);
 	
 	var vuestrapIcons = {
-	  'vs-icon': _srcComponentsIcons2['default']
+	  icons: _srcComponentsIcons2['default']
 	};
 	
 	exports['default'] = vuestrapIcons;
@@ -178,6 +178,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return 'assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
+	      }
+	    },
+	    ready: function ready() {
+	      if (!this.path && this.$options.vuestrapIconsPath) {
+	        this.path = this.$options.vuestrapIconsPath;
 	      }
 	    }
 	  }

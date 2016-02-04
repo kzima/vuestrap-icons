@@ -5,9 +5,10 @@
 	"accessibility": "By default icons component sets <code>aria-hidden='true'</code> attribute to avoid confusing output in screen readers. For more information please refer to <a href='http://getbootstrap.com/components/#glyphicons-how-to-use'>Accessible Icons section in Bootstrap Docs</a>.",
 	"dependencies": ["vuestrap/core/icons"],
 	"category": "components",
+	"note": "From  version 0.5.0 you can now change path or svg sprite by just setting a global <code>vuestrapIconsPath</code> mixin property.",
 	"browserSupport": {
 		"browsers": ["*IE9+", "*Android 4.3"],
-		"note": "* Icons use svg4everybody v.2.0.0 polyfill and it is embeded in the component's code base."
+		"note": "* Icons use svg4everybody v.2.0.0 polyfill and it is embedded in the component's code base."
 	},
 	"options": [
 		{
@@ -15,7 +16,7 @@
 			"type": "String",
 			"default": "''",
 			"required": false,
-			"description": "A name of the icon. For more icons please refer to <a href='https://useiconic.com/open/'>https://useiconic.com/open/</a>"
+			"description": "A name of the icon. For icon names please refer to <a href='https://useiconic.com/open/'>https://useiconic.com/open/</a>. You can also set a global mixin <code>vuestrapIconsPath</code> and point to your own svg sprite."
 		},
 		{
 			"name": "background",

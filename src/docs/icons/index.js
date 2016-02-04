@@ -2,7 +2,7 @@ import snippet from './snippet.html'
 import template from './icons.html'
 import meta from './icons.json'
 import './_icons.scss'
-import {sizes, variants} from 'utils'
+import {sizes, variants} from '../../utils'
 import icon from 'src/components/icons'
 import demo from 'vuestrap-docs/src/components/demo'
 

@@ -24,17 +24,15 @@
 	
 	<!-- Html markup start-->
 	<div slot="markup" v-bind:class="{ inverse: controls.variant === 'light' }">
-
-		<vs-icon name="info" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
-		<vs-icon name="info" background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
-		<vs-icon name="info" background="circle-fill" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon>
-		<vs-icon background="circle-fill" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="1"></vs-icon>
-		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="1"></vs-icon>
-		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="2"></vs-icon>
-		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" path="assets/icons.min.svg" text="11"></vs-icon>
-		<button class="btn btn-md" aria-label="settings"><vs-icon name="cog" :size="'md'" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon> </button>
-		<button class="btn btn-md"><vs-icon name="cog" :size="'md'" :variant="controls.variant" path="assets/icons.min.svg"></vs-icon> settings</button>
-
+		<vs-icon name="info" :size="controls.size" :variant="controls.variant"></vs-icon>
+		<vs-icon name="info" background="circle-outline" :size="controls.size" :variant="controls.variant"></vs-icon>
+		<vs-icon name="info" background="circle-fill" :size="controls.size" :variant="controls.variant"></vs-icon>
+		<vs-icon background="circle-fill" :size="controls.size" :variant="controls.variant" text="1"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" text="1"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" text="2"></vs-icon>
+		<vs-icon background="circle-outline" :size="controls.size" :variant="controls.variant" text="11"></vs-icon>
+		<button class="btn btn-md" aria-label="settings"><vs-icon name="cog" :size="'md'" :variant="controls.variant"></vs-icon> </button>
+		<button class="btn btn-md"><vs-icon name="cog" :size="'md'" :variant="controls.variant"></vs-icon> settings</button>
 	</div>
 	<!-- Html markup end-->
 </demo>

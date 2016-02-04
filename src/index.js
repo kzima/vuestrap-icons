@@ -22,6 +22,10 @@ routes.forEach((route) => {
 	docsPages.components[route.id] = route.component
 })
 
+Vue.mixin({
+	vuestrapIconsPath: 'assets/icons.min.svg',
+})
+
 // start docs instance
 window.docs = new Vue({
 	el: '#docs',

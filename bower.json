@@ -6,12 +6,14 @@
   ],
   "description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
   "main": [
-    "dist/vuestrap-icons.js",
-    "dist/vuestrap-icons.js.map",
-    "dist/vuestrap-icons.min.js",
-    "dist/vuestrap-icons.css",
-    "dist/vuestrap-icons.css.map",
-    "dist/vuestrap-icons.min.css"
+    "dist/vuestrapIcons.js",
+    "dist/vuestrapIcons.js.map",
+    "dist/vuestrapIcons.min.js",
+    "dist/vuestrapIcons.css",
+    "dist/vuestrapIcons.css.map",
+    "dist/vuestrapIcons.min.css",
+    "dist/vuestrapIcons-bundle.js",
+    "dist/vuestrapIcons-bundle.min.js"
   ],
   "moduleType": [
     "amd",
@@ -36,6 +38,7 @@
     "gulpfile.js",
     "index.html",
     "webpack*.js",
-    "utils"
+    "utils",
+    "dist/docs.js"
   ]
 }
