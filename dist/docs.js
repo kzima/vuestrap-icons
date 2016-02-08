@@ -2890,7 +2890,8 @@
 			"dev": "webpack --colors --progress --config webpack.build.js --env development",
 			"dev-bundle": "webpack --colors --progress --config webpack.build.js --env development --bundle true",
 			"docs": "webpack --colors --progress --config  webpack.build.js --env docs",
-			"serve-docs": "webpack-dev-server --port 8082 --inline --hot --quiet --config webpack.build.js --env docs"
+			"serve-docs": "webpack-dev-server --port 8082 --inline --hot --quiet --config webpack.build.js --env docs",
+			"release-win": "bash build/release.sh"
 		},
 		"keywords": [
 			"Bootstrap4",
