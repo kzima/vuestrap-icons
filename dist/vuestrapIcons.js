@@ -55,9 +55,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * IMPORT GLOBAL STYLING
+	 * IMPORT EACH COMPONENT
 	 */
-	// import normalize, grid, utilities and
 	'use strict';
 	
 	Object.defineProperty(exports, '__esModule', {
@@ -66,13 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(1);
-	
-	/**
-	 * IMPORT EACH COMPONENT
-	 */
-	
-	var _srcComponentsIcons = __webpack_require__(6);
+	var _srcComponentsIcons = __webpack_require__(1);
 	
 	var _srcComponentsIcons2 = _interopRequireDefault(_srcComponentsIcons);
 	
@@ -87,24 +80,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// import core stuff
-	'use strict';
-	
-	__webpack_require__(2);
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// import dependencies
 	'use strict';
 	
@@ -114,15 +89,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(7);
+	__webpack_require__(2);
 	
-	var _iconsHtml = __webpack_require__(9);
+	var _iconsHtml = __webpack_require__(6);
 	
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 	
 	// enable support for svg in all browsers
 	
-	__webpack_require__(10);
+	__webpack_require__(7);
 	
 	// export component object
 	exports['default'] = {
@@ -190,20 +165,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 7 */
+/* 2 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 8 */,
-/* 9 */
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports) {
 
 	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */

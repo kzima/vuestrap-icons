@@ -10,9 +10,9 @@ export default {
 	data() {
 		return {
 			pkg: this.$parent.pkg,
-			componentNameCamelCase: 'icons',
 			componentName: 'icons',
-			componentNameSurfixed: 'vs-icon'
+			componentNameSurfixed: 'vs-icon',
+			componentNameCamelCase: 'vsIcon',
 		}
 	},
 }
