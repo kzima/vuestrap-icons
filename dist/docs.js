@@ -2667,6 +2667,9 @@
 	    path: {
 	      type: String,
 	      'default': function _default() {
+	        if (this.$options.vuestrapIconsPath) {
+	          return this.path = this.$options.vuestrapIconsPath;
+	        }
 	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
@@ -2674,11 +2677,6 @@
 	          return 'assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
-	      }
-	    },
-	    ready: function ready() {
-	      if (!this.path && this.$options.vuestrapIconsPath) {
-	        this.path = this.$options.vuestrapIconsPath;
 	      }
 	    }
 	  }
@@ -2876,7 +2874,7 @@
 
 	module.exports = {
 		"name": "vuestrap-icons",
-		"version": "0.5.2",
+		"version": "0.5.3",
 		"description": "Vuestrap Icons Component complements Vuestrap web components with svg icons.",
 		"library": "vuestrapIcons",
 		"repository": {
@@ -2891,7 +2889,7 @@
 			"dev-bundle": "webpack --colors --progress --config webpack.build.js --env development --bundle true",
 			"docs": "webpack --colors --progress --config  webpack.build.js --env docs",
 			"serve-docs": "webpack-dev-server --port 8082 --inline --hot --quiet --config webpack.build.js --env docs",
-			"release-win": "bash build/release.sh"
+			"release": "bash build/release.sh && bash build/gh-pages.sh"
 		},
 		"keywords": [
 			"Bootstrap4",

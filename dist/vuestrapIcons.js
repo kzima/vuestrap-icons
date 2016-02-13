@@ -146,6 +146,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    path: {
 	      type: String,
 	      'default': function _default() {
+	        if (this.$options.vuestrapIconsPath) {
+	          return this.path = this.$options.vuestrapIconsPath;
+	        }
 	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
@@ -153,11 +156,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return 'assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
-	      }
-	    },
-	    ready: function ready() {
-	      if (!this.path && this.$options.vuestrapIconsPath) {
-	        this.path = this.$options.vuestrapIconsPath;
 	      }
 	    }
 	  }
