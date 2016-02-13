@@ -14,6 +14,7 @@ then
     # npm run cover 2>/dev/null
 
     # build
+    npm version $VERSION --no-git-tag-version
     VERSION=$VERSION npm run build
 
     # e2e
@@ -21,13 +22,6 @@ then
     # sauce
     # npm run sauce-all 2>/dev/null
 
-    # commit
-    git add -A
-    git commit -m "[build] $VERSION"
-    npm version $VERSION --message "[release] $VERSION"
-
-    # publish
-    git push origin refs/tags/v$VERSION
-    git push
-    npm publish
+    # commit & publish
+    git add -A && git commit -m "Release $VERSION" && git tag $VERSION && git push origin master --tags && npm publish
 fi
